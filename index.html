@@ -39,7 +39,6 @@
       min-height: 100vh;
     }
 
-    /* Оболочка мобильного приложения */
     .app-shell {
       width: 100%;
       max-width: 460px;
@@ -52,7 +51,6 @@
       padding-bottom: 80px;
     }
 
-    /* Верхняя шапка приложения */
     .app-header {
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(10px);
@@ -99,7 +97,6 @@
       color: #fff;
     }
 
-    /* Экраны (вкладки) */
     .screen {
       display: none;
       padding: 20px;
@@ -115,7 +112,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Главная страница (Hero Card) */
     .hero-banner {
       background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
       color: #fff;
@@ -153,7 +149,6 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    /* Статистика на главной */
     .stats-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -188,7 +183,6 @@
       color: var(--text);
     }
 
-    /* Быстрые карточки на главной */
     .quick-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -226,7 +220,6 @@
       color: var(--muted);
     }
 
-    /* Карточки и формы */
     .card {
       background: var(--card);
       border-radius: 20px;
@@ -234,6 +227,32 @@
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
       margin-bottom: 16px;
+    }
+
+    /* Селектор целей */
+    .goal-selector {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .goal-btn {
+      flex: 1;
+      background: #fff5f8;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .goal-btn.active {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      color: var(--primary-dark);
     }
 
     .upload-box {
@@ -276,7 +295,6 @@
       box-shadow: 0 6px 16px rgba(236, 72, 153, 0.25);
     }
 
-    /* Результаты */
     .result-top {
       display: flex;
       align-items: center;
@@ -383,7 +401,21 @@
       margin-top: 12px;
     }
 
-    /* Чат ИИ */
+    .voice-btn {
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
     .chat-box {
       display: flex;
       flex-direction: column;
@@ -445,7 +477,6 @@
       cursor: pointer;
     }
 
-    /* Нижнее меню навигации (Tab Bar) */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -490,7 +521,6 @@
 <body>
 
 <div class="app-shell">
-  <!-- Верхняя панель -->
   <header class="app-header">
     <div class="app-brand">🌸 LabelDecoder</div>
     <div class="lang-pills">
@@ -559,6 +589,13 @@
     <div class="card">
       <div class="section-title" data-i18n="scanTitle">📋 Состав продукта или название</div>
       
+      <!-- Селектор целей проверки -->
+      <div class="goal-selector">
+        <button class="goal-btn active" id="goal-slim" onclick="setGoal('slim')" data-i18n="goalSlim">🥗 Похудение</button>
+        <button class="goal-btn" id="goal-mass" onclick="setGoal('mass')" data-i18n="goalMass">💪 Набор массы</button>
+        <button class="goal-btn" id="goal-kids" onclick="setGoal('kids')" data-i18n="goalKids">👶 Детское питание</button>
+      </div>
+
       <div class="upload-box" onclick="document.getElementById('fileInput').click()">
         <input type="file" id="fileInput" accept="image/*" hidden onchange="handlePhotoUpload(event)" />
         <div style="font-size: 1.8rem; margin-bottom: 4px;">📸</div>
@@ -603,6 +640,10 @@
         <strong data-i18n="altTitle">💡 Чем лучше заменить:</strong>
         <p id="altText" style="margin-top: 4px;"></p>
       </div>
+
+      <button class="voice-btn" onclick="speakResult()">
+        <span>🔊</span> <span data-i18n="voiceBtn">Озвучить результат голосом</span>
+      </button>
     </div>
   </section>
 
@@ -613,7 +654,7 @@
         🤖 <span data-i18n="aiTitle">ИИ-консультант по питанию</span>
       </div>
       <div class="chat-messages" id="chatMessages">
-        <div class="msg bot" data-i18n="aiHello">Привет! Я твой ИИ-помощник LabelDecoder. Спроси меня про любой продукт, сахар, Е-добавки или статус Халяль!</div>
+        <div class="msg bot" data-i18n="aiHello">Привет! Я твой ИИ-помощник LabelDecoder. Спроси меня про любой продукт, сравнение вкусов (краб vs сметана-зелень), сахар или статус Халяль!</div>
       </div>
       <div class="chat-input-bar">
         <input type="text" id="chatInput" placeholder="Напишите вопрос..." onkeypress="if(event.key==='Enter') sendChat()" />
@@ -628,7 +669,6 @@
     <div id="historyContainer"></div>
   </section>
 
-  <!-- НИЖНЯЯ НАВИГАЦИЯ ПРИЛОЖЕНИЯ -->
   <nav class="bottom-nav">
     <button class="nav-btn active" id="tab-home" onclick="switchTab('home')">
       <span class="nav-icon">🏠</span>
@@ -651,8 +691,10 @@
 
 <script>
   let currentLang = "ru";
+  let currentGoal = "slim"; // slim, mass, kids
   let lastProductText = "";
   let lastScore = 100;
+  let lastVerdictText = "";
 
   const I18N = {
     ru: {
@@ -673,6 +715,9 @@
       homeAiTitle: "🤖 Спросить ИИ-диетолога",
       homeAiSub: "Узнай, чем заменить вредные сладости",
       scanTitle: "📋 Состав продукта или название",
+      goalSlim: "🥗 Похудение",
+      goalMass: "💪 Набор массы",
+      goalKids: "👶 Для детей",
       uploadBtn: "Загрузить фото этикетки / штрих-кода",
       uploadHint: "Нажмите, чтобы выбрать фото упаковки",
       analyzeBtn: "Проверить состав",
@@ -683,8 +728,9 @@
       textBreakdown: "🔍 Разбор состава:",
       chemTitle: "🧪 Вредные вещества и химия:",
       altTitle: "💡 Чем лучше заменить:",
+      voiceBtn: "Озвучить результат голосом",
       aiTitle: "ИИ-консультант по питанию",
-      aiHello: "Привет! Я твой ИИ-помощник LabelDecoder. Спроси меня про любой продукт, сахар, Е-добавки или статус Халяль!",
+      aiHello: "Привет! Я твой ИИ-помощник LabelDecoder. Спроси меня про любой продукт, сравнение вкусов (краб vs сметана-зелень), сахар или статус Халяль!",
       histTitle: "🕒 Недавние проверки",
       navHome: "Главная",
       navScan: "Сканер",
@@ -719,6 +765,9 @@
       homeAiTitle: "🤖 ИИ-диетологтан сұрау",
       homeAiSub: "Зиянды тәттілерді немен алмастыруға болады?",
       scanTitle: "📋 Өнім құрамы немесе атауы",
+      goalSlim: "🥗 Салмақ тастау",
+      goalMass: "💪 Салмақ қосу",
+      goalKids: "👶 Балаларға",
       uploadBtn: "Затбелгі / штрих-код фотосын жүктеу",
       uploadHint: "Қаптама фотосын таңдау үшін басыңыз",
       analyzeBtn: "Құрамды тексеру",
@@ -729,8 +778,9 @@
       textBreakdown: "🔍 Құрамды талдау:",
       chemTitle: "🧪 Зиянды заттар мен химия:",
       altTitle: "💡 Немен алмастырған дұрыс:",
+      voiceBtn: "Нәтижені дауыстап оқу",
       aiTitle: "Тамақтану бойынша ИИ-кеңесші",
-      aiHello: "Сәлем! Мен сенің LabelDecoder ИИ-көмекшіңмін. Кез келген өнім, қант немесе Халяль туралы сұра!",
+      aiHello: "Сәлем! Мен сенің LabelDecoder ИИ-көмекшіңмін. Кез келген өнім, дәмін салыстыру (краб және қаймақ-көк шөп), қант немесе Халяль туралы сұра!",
       histTitle: "🕒 Соңғы тексерулер",
       navHome: "Басты бет",
       navScan: "Сканер",
@@ -765,6 +815,9 @@
       homeAiTitle: "🤖 Ask AI Nutritionist",
       homeAiSub: "Find healthier swaps for snacks",
       scanTitle: "📋 Product ingredients or name",
+      goalSlim: "🥗 Weight Loss",
+      goalMass: "💪 Muscle Gain",
+      goalKids: "👶 For Kids",
       uploadBtn: "Upload label / barcode photo",
       uploadHint: "Tap to select a package photo",
       analyzeBtn: "Analyze Ingredients",
@@ -775,8 +828,9 @@
       textBreakdown: "🔍 Ingredient Breakdown:",
       chemTitle: "🧪 Harmful Substances & Chemistry:",
       altTitle: "💡 Healthier Alternative:",
+      voiceBtn: "Read aloud result",
       aiTitle: "AI Nutrition Assistant",
-      aiHello: "Hi! I'm your LabelDecoder AI assistant. Ask me about any product, hidden sugar, E-codes, or Halal status!",
+      aiHello: "Hi! I'm your LabelDecoder AI assistant. Ask me about any product, flavor comparison (crab vs sour cream & onion), sugar or Halal status!",
       histTitle: "🕒 Recent Scans",
       navHome: "Home",
       navScan: "Scanner",
@@ -878,7 +932,6 @@
     }
   ];
 
-  // Переключение вкладок приложения
   function switchTab(tabName) {
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
@@ -887,7 +940,14 @@
     if (tabName === "history") renderHistory();
   }
 
-  // Переключение языка
+  function setGoal(goal) {
+    currentGoal = goal;
+    document.querySelectorAll(".goal-btn").forEach(b => b.classList.remove("active"));
+    document.getElementById("goal-" + goal).classList.add("active");
+    const inputVal = document.getElementById("ingredientsInput").value.trim();
+    if (inputVal) runAnalysis();
+  }
+
   document.querySelectorAll(".lang-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
@@ -905,7 +965,6 @@
     });
   }
 
-  // Быстрый тест с главной страницы
   function quickTest(key) {
     const prod = PRODUCTS_DB[key];
     document.getElementById("ingredientsInput").value = prod[currentLang];
@@ -913,7 +972,6 @@
     runAnalysis();
   }
 
-  // Имитация загрузки фото / штрих-кода
   function handlePhotoUpload(event) {
     if (!event.target.files.length) return;
     const status = document.getElementById("photoStatus");
@@ -925,13 +983,11 @@
     }, 800);
   }
 
-  // Главный алгоритм анализа
   function runAnalysis() {
     const dict = I18N[currentLang];
     let text = document.getElementById("ingredientsInput").value.trim();
     if (!text) return;
 
-    // Проверяем, не ввел ли пользователь просто название продукта
     let matchedProd = null;
     for (let key in PRODUCTS_DB) {
       if (PRODUCTS_DB[key].match.test(text)) {
@@ -953,7 +1009,12 @@
     RULES.forEach(rule => {
       if (rule.pattern.test(text)) {
         found.push(rule);
-        score -= rule.penalty;
+        let penalty = rule.penalty;
+        // Штрафы меняются в зависимости от выбранной цели пользователя
+        if (currentGoal === "kids" && (rule.level === "danger" || rule.level === "warning")) penalty += 8;
+        if (currentGoal === "slim" && rule.pattern.test(/сахар|сироп|патока|мальтодекстрин/i)) penalty += 10;
+        
+        score -= penalty;
         if (rule.haram) isHaram = true;
         if (rule.doubt) isDoubt = true;
         html = html.replace(rule.pattern, m => `<mark class="${rule.level}">${m}</mark>`);
@@ -964,7 +1025,6 @@
     lastProductText = text;
     lastScore = score;
 
-    // Показываем карточку результата
     document.getElementById("resultCard").classList.remove("hidden");
     const ring = document.getElementById("scoreRing");
     document.getElementById("scoreNum").textContent = score;
@@ -984,7 +1044,8 @@
       vTitle.textContent = dict.vDanger;
     }
 
-    // Халяль статус
+    lastVerdictText = vTitle.textContent;
+
     const hBadge = document.getElementById("halalBadge");
     if (isHaram) {
       hBadge.style.background = "#ffe4e6";
@@ -1000,7 +1061,6 @@
       hBadge.textContent = dict.halalOk;
     }
 
-    // Калории и КБЖУ
     if (matchedProd) {
       document.getElementById("resCal").textContent = matchedProd.cal;
       document.getElementById("resProt").textContent = matchedProd.p;
@@ -1015,7 +1075,6 @@
 
     document.getElementById("highlightedText").innerHTML = html;
 
-    // Список химии
     const chemBlock = document.getElementById("chemBlock");
     const chemList = document.getElementById("chemList");
     chemList.innerHTML = "";
@@ -1032,7 +1091,6 @@
       });
     }
 
-    // Чем заменить
     const lower = text.toLowerCase();
     let alt = dict.altDefault;
     if (score >= 80) alt = dict.altClean;
@@ -1042,14 +1100,20 @@
 
     saveHistory(text, score);
   }
-// Защита текста от поломки разметки
-  function escapeChatText(str) {
-    return str.replace(/[&<>'"]/g, tag => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-    }[tag]));
+
+  // Голосовое озвучивание результатов
+  function speakResult() {
+    if (!('speechSynthesis' in window)) {
+      alert("Ваш браузер не поддерживает голосовое озвучивание.");
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const textToSpeak = `${lastVerdictText}. Оценка ${lastScore} из 100.`;
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    utterance.lang = currentLang === 'kz' ? 'kk-KZ' : currentLang === 'en' ? 'en-US' : 'ru-RU';
+    window.speechSynthesis.speak(utterance);
   }
 
-  // Чат с умным ИИ-консультантом
   function sendChat() {
     const input = document.getElementById("chatInput");
     const q = input.value.trim();
@@ -1060,7 +1124,6 @@
     input.value = "";
     box.scrollTop = box.scrollHeight;
 
-    // Индикатор «ИИ печатает...»
     const typingId = "typing-" + Date.now();
     const typingText = currentLang === "kz" ? "ИИ ойлануда..." : currentLang === "en" ? "AI is thinking..." : "ИИ анализирует...";
     box.innerHTML += `<div class="msg bot" id="${typingId}" style="opacity: 0.7;">${typingText}</div>`;
@@ -1076,76 +1139,52 @@
     }, 450);
   }
 
+  function escapeChatText(str) {
+    return str.replace(/[&<>'"]/g, tag => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    }[tag]));
+  }
+
   function getBotReply(q) {
     const lq = q.toLowerCase();
 
-    // 1. Сравнение вкусов чипсов (Краб vs Сметана и зелень)
     if (/(краб|crab)/.test(lq) && /(сметан|зелен|sour cream|onion)/.test(lq)) {
       if (currentLang === "kz") {
-        return "🦀 <b>Краб дәмі бар чипстер:</b> Құрамында синтетикалық хош иістендіргіштер, бояғыштар (паприка сығындысы) және натрий глутаматы (Е621) көбірек болады, бірақ нағыз теңіз өнімдері жоқ.<br><br>🌿 <b>Қаймақ пен көк шөп:</b> Құрамында табиғи құрғақ сүт сарысуы, пияз ұнтағы және кептірілген ақжелкен (петрушка) бар. Екеуі де майлы болғанымен, «қаймақ пен көк шөп» құрамы жағынан сәл табиғирақ, бірақ сүт аллергиясы барларға сақ болу керек.";
+        return "🦀 <b>Краб дәмі бар чипстер:</b> Синтетикалық хош иістендіргіштер мен Е621 көбірек. <br><br>🌿 <b>Қаймақ пен көк шөп:</b> Құрамында табиғи сарысу мен пияз ұнтағы бар, сәл табиғирақ.";
       }
       if (currentLang === "en") {
-        return "🦀 <b>Crab-flavored chips:</b> Rely heavily on synthetic seafood flavorings, colorings (paprika extract), and flavor enhancers (MSG / E621) with zero actual crab.<br><br>🌿 <b>Sour Cream & Onion:</b> Usually contain real dried whey powder, onion powder, and dried parsley. Both are high in oil and salt, but Sour Cream & Onion has slightly more natural seasoning ingredients (though it contains dairy/lactose).";
+        return "🦀 <b>Crab chips:</b> Rely entirely on artificial seafood flavorings and MSG.<br><br>🌿 <b>Sour Cream & Onion:</b> Contain real dried whey and onion powder, slightly more natural seasoning.";
       }
-      return "🦀 <b>Чипсы со вкусом краба:</b> Делаются полностью на синтетических ароматизаторах морепродуктов, красителях (экстракт паприки) и усилителях вкуса (глутамат натрия Е621) — настоящего краба там нет.<br><br>🌿 <b>Сметана и зелень:</b> Обычно содержат натуральную сухую молочную сыворотку, луковый порошок и сушеную петрушку. Оба варианта калорийны из-за масла, но «сметана и зелень» чуть натуральнее по специям (однако не подходят при непереносимости лактозы).";
+      return "🦀 <b>Чипсы со вкусом краба:</b> Сделаны полностью на синтетических ароматизаторах и глутамате натрия (Е621).<br><br>🌿 <b>Сметана и зелень:</b> Содержат сухую молочную сыворотку и луковый порошок, специи чуть ближе к натуральным.";
     }
 
-    // 2. Сравнение других продуктов (кола vs сок, шоколад темный vs молочный и т.д.)
-    if (/(отлича|разниц|лучше|сравн|vs|или|difference|compare|better)/.test(lq)) {
-      if (/(кола|газировк|сок|cola|juice)/.test(lq)) {
-        return currentLang === "kz" 
-          ? "Газдалған сусындарда ортофосфор қышқылы (Е338) және бояғыштар бар, ал қаптамадағы шырындарда қант мөлшері бірдей (100 мл-де ~10 г). Ең жақсы балама — лимон қосылған су."
-          : "В газировке есть ортофосфорная кислота (Е338) и красители, но в пакетированных соках столько же сахара (около 10 г на 100 мл). Лучшая замена обоим — вода с лимоном или домашний морс.";
-      }
-      if (/(темн|горьк|молочн|шоколад|dark|milk|chocolate)/.test(lq)) {
-        return currentLang === "kz"
-          ? "Қара шоколадта (75%+) какао майы мен антиоксиданттар көп, қант аз. Сүтті шоколадта қант пен өсімдік майлары басым."
-          : "В горьком шоколаде (от 75%) минимум сахара и много какао-масла с антиоксидантами. В молочном шоколаде на первом месте стоит сахар и сухое молоко, поэтому он сильнее повышает инсулин.";
-      }
-      return currentLang === "kz"
-        ? "Өнімдерді салыстыру үшін олардың құрамындағы алғашқы 3 ингредиентке қараңыз: егер бірінші орында қант немесе пальма майы тұрса, өнім пайдасыз."
-        : "При сравнении двух продуктов всегда смотри на первые 3 ингредиента в списке (они идут по убыванию массы). Тот продукт лучше, где нет сахара, патоки, пальмового масла и усилителей вкуса (Е621).";
-    }
-
-    // 3. Вопросы про Е-добавки и глутамат
     if (/(е621|e621|глутамат|добавк|химия|вредн|additives|msg)/.test(lq)) {
       return currentLang === "kz"
-        ? "Е621 (натрий глутаматы) — дәм күшейткіш. Ол мидың дәм сезу рецепторларын алдап, өнімді мөлшерден тыс жеуге итермелейді."
-        : "Е621 (глутамат натрия) — это усилитель вкуса. Он искусственно стимулирует рецепторы языка, из-за чего мозг хочет съесть всю пачку целиком и формируется привычка к соленому.";
+        ? "Е621 — дәм күшейткіш. Ол рецепторларды алдап, өнімді көп жеуге итермелейді."
+        : "Е621 (глутамат натрия) — усилитель вкуса, стимулирующий рецепторы языка.";
     }
 
-    // 4. Вопросы про сахар и калории
     if (/(сахар|сладк|калор|похуд|диет|sugar|calorie|diet)/.test(lq)) {
       return currentLang === "kz"
-        ? `Соңғы тексерілген өнімнің сапа бағасы: ${lastScore}/100. Егер құрамда мальтодекстрин, сірне немесе глюкоза сиропы болса — бұл жасырын қант.`
-        : `Оценка последнего отсканированного продукта: ${lastScore}/100. Обращай внимание на скрытые названия сахара: мальтодекстрин, патока, декстроза и глюкозно-фруктозный сироп.`;
+        ? `Соңғы өнім көрсеткіші: ${lastScore}/100. Мальтодекстрин мен сірнеге назар аударыңыз!`
+        : `Оценка последнего продукта: ${lastScore}/100. Обращайте внимание на скрытые сиропы и сахар!`;
     }
 
-    // 5. Вопросы про Халяль / Харам
     if (/(халяль|харам|свин|желатин|halal|haram|pork)/.test(lq)) {
       return currentLang === "kz"
-        ? "Халяль тексеруінде ең маңыздысы — желатиннің (шошқа емес, сиыр немесе өсімдік тектес болуы), кармин бояғышының (Е120) және спирттің болмауы."
-        : "При проверке на Халяль главные маркеры риска — это животный желатин (если не указано, что он говяжий халяль или растительный агар-агар), краситель кармин (Е120) и этиловый спирт.";
+        ? "Халяль үшін бастысы — шошқа желатині, кармин (Е120) және алкогольдің болмауы."
+        : "Для Халяль важно отсутствие животного желатина, кармина (Е120) и алкоголя.";
     }
 
-    // 6. Вопросы про детей
-    if (/(детям|ребен|малыш|бала|kids|child)/.test(lq)) {
-      return lastScore < 60
-        ? "Из-за синтетических красителей, усилителей вкуса и избытка сахара или трансжиров этот продукт не рекомендуется давать детям регулярно."
-        : "Состав достаточно чистый и безопасный, такой продукт можно давать детям в умеренном количестве.";
-    }
-
-    // Универсальный ответ с привязкой к текущему продукту
     if (currentLang === "kz") {
-      return `Соңғы тексерілген өнімнің көрсеткіші — <b>${lastScore}/100</b>. Нақтырақ білу үшін өнім атауын, Е-қоспаларды немесе екі тағамды салыстыруды сұраңыз!`;
+      return `Соңғы өнім көрсеткіші — <b>${lastScore}/100</b>. Қант, калория немесе өнімдерді салыстыру туралы сұраңыз!`;
     }
     if (currentLang === "en") {
-      return `The last scanned product scored <b>${lastScore}/100</b>. Ask me to compare two snacks, explain E-codes, or check Halal status!`;
+      return `Last scanned product score: <b>${lastScore}/100</b>. Ask me about sugar, calories or comparisons!`;
     }
-    return `Оценка последнего проверенного продукта: <b>${lastScore}/100</b>. Можешь спросить меня про сравнение разных вкусов (например, краб и сметана-зелень), скрытый сахар, Е-добавки или статус Халяль!`;
+    return `Оценка последнего проверенного продукта: <b>${lastScore}/100</b>. Можешь спросить про сравнение вкусов, скрытый сахар или Халяль!`;
   }
 
-  // История проверок
   function saveHistory(text, score) {
     let list = JSON.parse(localStorage.getItem("ld_app_hist") || "[]");
     list.unshift({ title: text.slice(0, 35) + "...", full: text, score: score });
@@ -1175,7 +1214,6 @@
     runAnalysis();
   }
 
-  // Инициализация счетчика на главной
   const initHist = JSON.parse(localStorage.getItem("ld_app_hist") || "[]");
   document.getElementById("statScans").textContent = initHist.length;
 </script>
