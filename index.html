@@ -229,7 +229,6 @@
       margin-bottom: 16px;
     }
 
-    /* Селектор целей */
     .goal-selector {
       display: flex;
       gap: 6px;
@@ -352,6 +351,22 @@
       color: var(--primary-dark);
     }
 
+    .goal-advice-box {
+      background: #fdf2f8;
+      border: 1.5px solid #f9a8d4;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+      color: #831843;
+    }
+
+    .goal-advice-box strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #9d174d;
+    }
+
     .highlight-box {
       background: #fff9fb;
       border: 1px solid var(--border);
@@ -392,12 +407,12 @@
     }
 
     .alt-card {
-      background: #fdf2f8;
-      border: 1px solid #f9a8d4;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
       border-radius: 14px;
       padding: 14px;
       font-size: 0.88rem;
-      color: #831843;
+      color: #78350f;
       margin-top: 12px;
     }
 
@@ -626,6 +641,12 @@
         <div><span data-i18n="protLbl">Белки</span><strong id="resProt">0 г</strong></div>
         <div><span data-i18n="fatLbl">Жиры</span><strong id="resFat">0 г</strong></div>
         <div><span data-i18n="carbLbl">Углеводы</span><strong id="resCarb">0 г</strong></div>
+      </div>
+
+      <!-- Блок персонального совета под выбранную цель -->
+      <div class="goal-advice-box" id="goalAdviceBox">
+        <strong id="goalAdviceTitle">🎯 Вердикт для вашей цели:</strong>
+        <p id="goalAdviceText"></p>
       </div>
 
       <div class="section-title" data-i18n="textBreakdown">🔍 Разбор состава:</div>
@@ -1010,7 +1031,6 @@
       if (rule.pattern.test(text)) {
         found.push(rule);
         let penalty = rule.penalty;
-        // Штрафы меняются в зависимости от выбранной цели пользователя
         if (currentGoal === "kids" && (rule.level === "danger" || rule.level === "warning")) penalty += 8;
         if (currentGoal === "slim" && rule.pattern.test(/сахар|сироп|патока|мальтодекстрин/i)) penalty += 10;
         
@@ -1073,6 +1093,9 @@
       document.getElementById("resCarb").textContent = score < 50 ? "54 г" : "24 г";
     }
 
+    // Генерация персонального совета под цель
+    renderGoalAdvice(score, text);
+
     document.getElementById("highlightedText").innerHTML = html;
 
     const chemBlock = document.getElementById("chemBlock");
@@ -1101,7 +1124,38 @@
     saveHistory(text, score);
   }
 
-  // Голосовое озвучивание результатов
+  function renderGoalAdvice(score, text) {
+    const adviceTitle = document.getElementById("goalAdviceTitle");
+    const adviceText = document.getElementById("goalAdviceText");
+    const lower = text.toLowerCase();
+
+    if (currentGoal === "slim") {
+      adviceTitle.textContent = currentLang === "kz" ? "🎯 Салмақ тастау мақсаты үшін:" : currentLang === "en" ? "🎯 For Weight Loss Goal:" : "🎯 Вердикт для цели «Похудение»:";
+      if (score >= 80) {
+        adviceText.textContent = currentLang === "kz" ? "✅ Бұл өнімді диета кезінде қауіпсіз жеуге болады, калориясы аз." : currentLang === "en" ? "✅ Safe to consume during a weight-loss diet." : "✅ Отличный выбор! Можно смело есть при похудении, калорийность и состав в норме.";
+      } else if (score >= 45) {
+        adviceText.textContent = currentLang === "kz" ? "⚠️ Аз мөлшерде жеуге болады, бірақ құрамында калория мен көмірсулар бар." : currentLang === "en" ? "⚠️ Consume in moderation; contains carbs and hidden sugars." : "⚠️ Употребляйте с осторожностью: продукт содержит скрытые углеводы или жиры, которые могут замедлить похудение.";
+      } else {
+        adviceText.textContent = currentLang === "kz" ? "❌ Салмақ тастау кезінде мұны жеуге БОЛМАЙДЫ! Жылдам қант пен трансмайлар артық салмақ қосады." : currentLang === "en" ? "❌ Avoid! High sugar and trans fats will stall your weight loss." : "❌ Категорически не рекомендуется при похудении! Избыток сахара, трансжиров или быстрых углеводов отложится в жир.";
+      }
+    } else if (currentGoal === "mass") {
+      adviceTitle.textContent = currentLang === "kz" ? "🎯 Салмақ қосу мақсаты үшін:" : currentLang === "en" ? "🎯 For Muscle Gain Goal:" : "🎯 Вердикт для цели «Набор массы»:";
+      if (score >= 70) {
+        adviceText.textContent = currentLang === "kz" ? "✅ Сапалы калориялар мен ақуыз — бұл бұлшықет өсуіне пайдалы!" : currentLang === "en" ? "✅ Great source of quality energy and nutrients for building mass!" : "✅ Подходит! Дает хорошую энергию и нутриенты для роста массы.";
+      } else {
+        adviceText.textContent = currentLang === "kz" ? "⚠️ Бұл «құрғақ емес» калориялар. Бұлшықет емес, көбіне май жиналады." : currentLang === "en" ? "⚠️ 'Dirty' calories. Will increase fat rather than clean muscle." : "⚠️ Это «грязные» калории. Энергии много, но из-за химии и сахара вырастет в основном жировая прослойка, а не чистые мышцы.";
+      }
+    } else {
+      // kids
+      adviceTitle.textContent = currentLang === "kz" ? "🎯 Балалар тағамы үшін:" : currentLang === "en" ? "🎯 For Kids Nutrition Goal:" : "🎯 Вердикт для цели «Детское питание»:";
+      if (score >= 80) {
+        adviceText.textContent = currentLang === "kz" ? "✅ Балаларға қауіпсіз, зиянды қоспалар жоқ." : currentLang === "en" ? "✅ Safe for children, no harmful additives." : "✅ Полностью безопасно для детей, состав чистый и натуральный.";
+      } else {
+        adviceText.textContent = currentLang === "kz" ? "❌ Бұл өнімді балаларға беруге КЕҢЕС БЕРІЛМЕЙДІ (химия, бояғыштар бар)." : currentLang === "en" ? "❌ NOT recommended for kids due to additives and sugar." : "❌ Не рекомендуется давать детям! Из-за усилителей вкуса, красителей или избытка сахара это вредно для детского организма.";
+      }
+    }
+  }
+
   function speakResult() {
     if (!('speechSynthesis' in window)) {
       alert("Ваш браузер не поддерживает голосовое озвучивание.");
