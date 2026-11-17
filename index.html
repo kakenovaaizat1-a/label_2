@@ -536,7 +536,6 @@
       margin-top: 8px;
     }
 
-    /* Трекер питания */
     .meal-card {
       background: var(--primary-soft);
       border: 1px solid var(--border);
@@ -583,6 +582,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .calc-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
     .chat-box {
@@ -671,10 +677,10 @@
       align-items: center;
       gap: 2px;
       color: var(--muted);
-      font-size: 0.55rem;
+      font-size: 0.58rem;
       font-weight: 600;
       cursor: pointer;
-      width: 12.5%;
+      width: 14.2%;
     }
 
     .nav-btn.active {
@@ -682,7 +688,7 @@
     }
 
     .nav-icon {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
     }
 
     .hidden {
@@ -831,10 +837,51 @@
     </div>
   </section>
 
-  <!-- ЭКРАН 3: ТРЕКЕР ПИТАНИЯ (Ежедневное меню + Советы) -->
-  <section id="screen-meals" class="screen">
-    <div class="section-title" data-i18n="mealHeader">🍽️ Трекер приема пищи</div>
+  <!-- ЭКРАН 3: КБЖУ И МЕНЮ (Объединенная страница) -->
+  <section id="screen-calc-meals" class="screen">
+    <!-- Блок 1: Калькулятор нормы -->
     <div class="card">
+      <div class="section-title" data-i18n="calcHeader">📊 Калькулятор суточной нормы КБЖУ</div>
+      <div class="calc-row">
+        <div>
+          <label style="font-size: 0.75rem; font-weight: 700; color: var(--muted);" data-i18n="weightLbl">Вес (кг)</label>
+          <input type="number" id="calcWeight" value="60" />
+        </div>
+        <div>
+          <label style="font-size: 0.75rem; font-weight: 700; color: var(--muted);" data-i18n="heightLbl">Рост (см)</label>
+          <input type="number" id="calcHeight" value="170" />
+        </div>
+      </div>
+      <div class="calc-row">
+        <div>
+          <label style="font-size: 0.75rem; font-weight: 700; color: var(--muted);" data-i18n="ageLbl">Возраст</label>
+          <input type="number" id="calcAge" value="16" />
+        </div>
+        <div>
+          <label style="font-size: 0.75rem; font-weight: 700; color: var(--muted);" data-i18n="activityLbl">Активность</label>
+          <select id="calcActivity">
+            <option value="1.2" data-i18n="act1">Минимальная</option>
+            <option value="1.375" selected data-i18n="act2">Умеренная</option>
+            <option value="1.55" data-i18n="act3">Активная</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-main" onclick="calculateMacros()" data-i18n="calcBtn">Рассчитать норму</button>
+    </div>
+
+    <div id="calcResultCard" class="card hidden" style="text-align: center;">
+      <div class="section-title" data-i18n="calcResTitle">✨ Ваша суточная норма:</div>
+      <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 10px;" id="resDailyCal">0 ккал</div>
+      <div class="macros-strip">
+        <div><span>Белки</span><strong id="resDailyProt">0 г</strong></div>
+        <div><span>Жиры</span><strong id="resDailyFat">0 г</strong></div>
+        <div><span>Углеводы</span><strong id="resDailyCarb">0 г</strong></div>
+      </div>
+    </div>
+
+    <!-- Блок 2: Трекер питания с авторасчетом порций -->
+    <div class="card" style="margin-top: 16px;">
+      <div class="section-title" data-i18n="mealHeader">🍽️ Дневник питания и авторасчет</div>
       <label style="font-size: 0.78rem; font-weight: 700; color: var(--muted);" data-i18n="mealTypeLbl">Прием пищи</label>
       <select id="mealType" style="margin-bottom: 8px;">
         <option value="Завтрак" data-i18n="mBreakfast">🥣 Завтрак</option>
@@ -843,25 +890,18 @@
         <option value="Перекус" data-i18n="mSnack">🍎 Перекус</option>
       </select>
 
-      <label style="font-size: 0.78rem; font-weight: 700; color: var(--muted);" data-i18n="mealFoodLbl">Что вы съели?</label>
-      <input type="text" id="mealInput" placeholder="Например: Куриная грудка с гречкой и салатом" />
+      <label style="font-size: 0.78rem; font-weight: 700; color: var(--muted);" data-i18n="mealFoodLbl">Что вы съели (например: 1/2 овсяная каша, 200г творог):</label>
+      <input type="text" id="mealInput" placeholder="1/2 порции овсяной каши" />
 
-      <label style="font-size: 0.78rem; font-weight: 700; color: var(--muted);" data-i18n="mealCalLbl">Калории (ккал) и Белки (г)</label>
-      <div class="calc-row">
-        <input type="number" id="mealCal" placeholder="450 ккал" value="400" />
-        <input type="number" id="mealProt" placeholder="Белки (г)" value="30" />
-      </div>
-
-      <button class="btn-main" onclick="addMealItem()" data-i18n="mealAddBtn">Добавить в дневник</button>
+      <button class="btn-main" onclick="addAutoMealItem()" data-i18n="mealAddBtn">Добавить в дневник</button>
     </div>
 
-    <!-- Итоги дня и советы ИИ -->
     <div class="card" style="background: var(--primary-soft);">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
         <strong style="color: var(--primary);" data-i18n="daySummary">📊 Итоги за сегодня:</strong>
-        <span style="font-weight: 800; font-size: 0.95rem;" id="totalDayCal">0 / 2000 ккал</span>
+        <span style="font-weight: 800; font-size: 0.95rem;" id="totalDayCal">0 ккал</span>
       </div>
-      <p style="font-size: 0.84rem; line-height: 1.5; color: var(--text);" id="mealAiAdvice">Добавьте еду в дневник, чтобы получить персональные рекомендации по питанию!</p>
+      <p style="font-size: 0.82rem; line-height: 1.5; color: var(--text);" id="mealAiAdvice">Добавьте блюдо, и приложение автоматически рассчитает калории!</p>
     </div>
 
     <div id="mealsListContainer"></div>
@@ -884,19 +924,18 @@
       <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text);" id="vitResDesc"></p>
     </div>
 
-    <!-- Основные дефициты и их влияние -->
     <div class="section-title" data-i18n="mainDeficits">⚠️ Важные витамины и влияние дефицита:</div>
     <div class="vitamin-card">
       <strong>☀️ Витамин D (Солнечный витамин)</strong>
-      <p style="font-size: 0.82rem; color: var(--muted); margin-top: 3px;"><strong>Где брать:</strong> Больше гуляйте на солнце, ешьте жирную рыбу, яйца.<br><strong>Дефицит:</strong> Хроническая усталость, слабость в мышцах, частые простуды, ухудшение настроения.</p>
+      <p style="font-size: 0.82rem; color: var(--muted); margin-top: 3px;"><strong>Где брать:</strong> Больше гуляйте на солнце, ешьте жирную рыбу, яйца.<br><strong>Дефицит:</strong> Хроническая усталость, слабость в мышцах, частые простуды.</p>
     </div>
     <div class="vitamin-card">
       <strong>💧 Витамин C (Антиоксидант)</strong>
-      <p style="font-size: 0.82rem; color: var(--muted); margin-top: 3px;"><strong>Где брать:</strong> Цитрусовые, киви, болгарский перец, шиповник.<br><strong>Дефицит:</strong> Медленное заживление ран, уязвимость к инфекциям, сухость кожи.</p>
+      <p style="font-size: 0.82rem; color: var(--muted); margin-top: 3px;"><strong>Где брать:</strong> Цитрусовые, киви, болгарский перец, шиповник.<br><strong>Дефицит:</strong> Медленное заживление ран, уязвимость к инфекциям.</p>
     </div>
   </section>
 
-  <!-- ЭКРАН 5: ТЕРМИН ДНЯ (С выученными) -->
+  <!-- ЭКРАН 5: ТЕРМИН ДНЯ -->
   <section id="screen-term" class="screen">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
       <div class="section-title" style="margin-bottom: 0;" data-i18n="termHeader">💡 Термины о питании</div>
@@ -914,65 +953,20 @@
     <div id="learnedListContainer"></div>
   </section>
 
-  <!-- ЭКРАН 6: КАЛЬКУЛЯТОР КБЖУ -->
-  <section id="screen-calc" class="screen">
-    <div class="card">
-      <div class="section-title" data-i18n="calcHeader">📊 Калькулятор суточной нормы КБЖУ</div>
-      
-      <div class="calc-row">
-        <div>
-          <label style="font-size: 0.75rem; font-weight: 700; color: var(--muted);" data-i18n="weightLbl">Вес (кг)</label>
-          <input type="number" id="calcWeight" value="60" />
-        </div>
-        <div>
-          <label style="font-size: 0.75rem; font-weight: 700; color: var(--muted);" data-i18n="heightLbl">Рост (см)</label>
-          <input type="number" id="calcHeight" value="170" />
-        </div>
-      </div>
-
-      <div class="calc-row">
-        <div>
-          <label style="font-size: 0.75rem; font-weight: 700; color: var(--muted);" data-i18n="ageLbl">Возраст</label>
-          <input type="number" id="calcAge" value="16" />
-        </div>
-        <div>
-          <label style="font-size: 0.75rem; font-weight: 700; color: var(--muted);" data-i18n="activityLbl">Активность</label>
-          <select id="calcActivity">
-            <option value="1.2" data-i18n="act1">Минимальная</option>
-            <option value="1.375" selected data-i18n="act2">Умеренная</option>
-            <option value="1.55" data-i18n="act3">Активная</option>
-          </select>
-        </div>
-      </div>
-
-      <button class="btn-main" onclick="calculateMacros()" data-i18n="calcBtn">Рассчитать норму</button>
-    </div>
-
-    <div id="calcResultCard" class="card hidden" style="text-align: center;">
-      <div class="section-title" data-i18n="calcResTitle">✨ Ваша суточная норма:</div>
-      <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 10px;" id="resDailyCal">0 ккал</div>
-      <div class="macros-strip">
-        <div><span>Белки</span><strong id="resDailyProt">0 г</strong></div>
-        <div><span>Жиры</span><strong id="resDailyFat">0 г</strong></div>
-        <div><span>Углеводы</span><strong id="resDailyCarb">0 г</strong></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ЭКРАН 7: ИЗБРАННОЕ -->
+  <!-- ЭКРАН 6: ИЗБРАННОЕ -->
   <section id="screen-fav" class="screen">
     <div class="section-title" data-i18n="favTitle">⭐ Избранные продукты</div>
     <div id="favoritesContainer"></div>
   </section>
 
-  <!-- ЭКРАН 8: ИИ-ПОМОЩНИК -->
+  <!-- ЭКРАН 7: ИИ-ПОМОЩНИК -->
   <section id="screen-ai" class="screen">
     <div class="card chat-box">
       <div class="section-title" style="border-bottom: 1px solid var(--border); padding-bottom: 8px;">
         🤖 <span data-i18n="aiTitle">ИИ-консультант по питанию</span>
       </div>
       <div class="chat-messages" id="chatMessages">
-        <div class="msg bot" data-i18n="aiHello">Привет! Я твой ИИ-помощник LabelDecoder. Спроси меня про витамины, КБЖУ или Халяль!</div>
+        <div class="msg bot" data-i18n="aiHello">Привет! Я твой ИИ-помощник LabelDecoder. Спроси меня про КБЖУ или витамины!</div>
       </div>
       <div class="chat-input-bar">
         <input type="text" id="chatInput" placeholder="Напишите вопрос..." onkeypress="if(event.key==='Enter') sendChat()" />
@@ -981,7 +975,7 @@
     </div>
   </section>
 
-  <!-- ЭКРАН 9: ИСТОРИЯ -->
+  <!-- ЭКРАН 8: ИСТОРИЯ -->
   <section id="screen-history" class="screen">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
       <div class="section-title" style="margin-bottom: 0;" data-i18n="histTitle">🕒 Недавние проверки</div>
@@ -999,9 +993,9 @@
       <span class="nav-icon">🔍</span>
       <span data-i18n="navScan">Сканер</span>
     </button>
-    <button class="nav-btn" id="tab-meals" onclick="switchTab('meals')">
-      <span class="nav-icon">🍽️</span>
-      <span data-i18n="navMeals">Меню</span>
+    <button class="nav-btn" id="tab-calc-meals" onclick="switchTab('calc-meals')">
+      <span class="nav-icon">📊</span>
+      <span data-i18n="navCalcMeals">КБЖУ & Меню</span>
     </button>
     <button class="nav-btn" id="tab-vitamins" onclick="switchTab('vitamins')">
       <span class="nav-icon">🍊</span>
@@ -1010,10 +1004,6 @@
     <button class="nav-btn" id="tab-term" onclick="switchTab('term')">
       <span class="nav-icon">💡</span>
       <span data-i18n="navTerm">Термин</span>
-    </button>
-    <button class="nav-btn" id="tab-calc" onclick="switchTab('calc')">
-      <span class="nav-icon">📊</span>
-      <span data-i18n="navCalc">КБЖУ</span>
     </button>
     <button class="nav-btn" id="tab-fav" onclick="switchTab('fav')">
       <span class="nav-icon">⭐</span>
@@ -1066,7 +1056,7 @@
       altTitle: "💡 Чем лучше заменить:",
       voiceBtn: "Озвучить результат голосом",
       aiTitle: "ИИ-консультант по питанию",
-      aiHello: "Привет! Я твой ИИ-помощник LabelDecoder. Спроси меня про витамины, КБЖУ или Халяль!",
+      aiHello: "Привет! Я твой ИИ-помощник LabelDecoder. Спроси меня про КБЖУ или витамины!",
       favTitle: "⭐ Избранные продукты",
       histTitle: "🕒 Недавние проверки",
       clearHistBtn: "Очистить всё",
@@ -1080,10 +1070,9 @@
       act3: "Активная",
       calcBtn: "Рассчитать норму",
       calcResTitle: "✨ Ваша суточная норма:",
-      mealHeader: "🍽️ Дневник питания и советы",
+      mealHeader: "🍽️ Дневник питания и авторасчет",
       mealTypeLbl: "Прием пищи",
-      mealFoodLbl: "Что вы съели?",
-      mealCalLbl: "Калории (ккал) и Белки (г)",
+      mealFoodLbl: "Что вы съели (например: 1/2 овсяная каша, 200г творог):",
       mealAddBtn: "Добавить в дневник",
       daySummary: "📊 Итоги за сегодня:",
       mBreakfast: "🥣 Завтрак",
@@ -1098,10 +1087,9 @@
       learnedListTitle: "🎓 Выученные термины:",
       navHome: "Главная",
       navScan: "Сканер",
-      navMeals: "Меню",
+      navCalcMeals: "КБЖУ & Меню",
       navVit: "Витамины",
       navTerm: "Термин",
-      navCalc: "КБЖУ",
       navFav: "Избранное",
       navHist: "История",
       vClean: "Отличный чистый состав!",
@@ -1158,8 +1146,7 @@
       calcResTitle: "✨ Сіздің нормаңыз:",
       mealHeader: "🍽️ Тамақтану күнделігі",
       mealTypeLbl: "Тамақ түрі",
-      mealFoodLbl: "Не жедіңіз?",
-      mealCalLbl: "Калория және Ақуыз",
+      mealFoodLbl: "Не жедіңіз (мысалы: 1/2 ботқа, 200г сүзбе):",
       mealAddBtn: "Қосу",
       daySummary: "📊 Бүгінгі қорытынды:",
       mBreakfast: "🥣 Таңғы ас",
@@ -1174,10 +1161,9 @@
       learnedListTitle: "🎓 Жастелген терминдер:",
       navHome: "Басты",
       navScan: "Сканер",
-      navMeals: "Меню",
+      navCalcMeals: "КБЖУ & Меню",
       navVit: "Витамин",
       navTerm: "Термин",
-      navCalc: "КБЖУ",
       navFav: "Таңдаулы",
       navHist: "Тарих",
       vClean: "Тамаша таза құрам!",
@@ -1232,10 +1218,9 @@
       act3: "Active",
       calcBtn: "Calculate",
       calcResTitle: "✨ Your daily target:",
-      mealHeader: "🍽️ Meal Tracker & Advice",
+      mealHeader: "🍽️ Meal Tracker & Auto-calc",
       mealTypeLbl: "Meal type",
-      mealFoodLbl: "What did you eat?",
-      mealCalLbl: "Calories & Protein (g)",
+      mealFoodLbl: "What did you eat (e.g. 1/2 porridge, 200g cottage cheese):",
       mealAddBtn: "Add to diary",
       daySummary: "📊 Today Summary:",
       mBreakfast: "🥣 Breakfast",
@@ -1250,10 +1235,9 @@
       learnedListTitle: "🎓 Learned Terms:",
       navHome: "Home",
       navScan: "Scanner",
-      navMeals: "Meals",
+      navCalcMeals: "Macros & Menu",
       navVit: "Vitamins",
       navTerm: "Term",
-      navCalc: "Macros",
       navFav: "Favorites",
       navHist: "History",
       vClean: "Great Clean Label!",
@@ -1274,16 +1258,26 @@
   ];
 
   const FOOD_VITAMINS_DB = {
-    апельсин: { icon: "🍊", text: "Богат витамином C (около 70 мг на 100г) и клетчаткой. Укрепляет иммунитет и улучшает кожу." },
+    апельсин: { icon: "🍊", text: "Богат витамином C (около 70 мг на 100г) и клетчаткой. Укрепляет иммунитет." },
     orange: { icon: "🍊", text: "Rich in Vitamin C (~70mg per 100g) and fiber. Boosts immunity." },
-    айран: { icon: "🥛", text: "Содержит кальций, витамины группы B и пробиотики для микрофлоры кишечника." },
-    яйцо: { icon: "🥚", text: "Источник холина, витамина D, B12 и качественного белка для мышц." },
+    айран: { icon: "🥛", text: "Содержит кальций, витамины группы B и пробиотики." },
+    яйцо: { icon: "🥚", text: "Источник холина, витамина D, B12 и качественного белка." },
     egg: { icon: "🥚", text: "Source of choline, Vitamin D, B12 and high-quality protein." },
-    лосось: { icon: "🐟", text: "Лидер по содержанию Омега-3 жирных кислот и витамина D. Полезен для сердца и мозга." },
-    salmon: { icon: "🐟", text: "High in Omega-3 fatty acids and Vitamin D. Great for heart and brain." }
+    лосось: { icon: "🐟", text: "Лидер по содержанию Омега-3 жирных кислот и витамина D." },
+    salmon: { icon: "🐟", text: "High in Omega-3 fatty acids and Vitamin D." }
   };
 
-  // Стрик активности
+  // База продуктов для умного авторасчета порций
+  const AUTO_FOOD_DB = [
+    { regex: /(овсян|овсяная каша|каш)/i, baseCal: 170, baseProt: 5 },
+    { regex: /(творог|творожок)/i, baseCal: 180, baseProt: 24 },
+    { regex: /(куриц|куриная грудка|грудк)/i, baseCal: 220, baseProt: 35 },
+    { regex: /(яйц|яйца|омлет)/i, baseCal: 140, baseProt: 12 },
+    { regex: /(яблоко|фрукт)/i, baseCal: 90, baseProt: 1 },
+    { regex: /(суп|борщ)/i, baseCal: 250, baseProt: 10 },
+    { regex: /(рис|гречк|гречка|макарон)/i, baseCal: 210, baseProt: 6 }
+  ];
+
   function updateStreak() {
     let lastDate = localStorage.getItem("ld_streak_date");
     let streak = parseInt(localStorage.getItem("ld_streak_count") || "1");
@@ -1295,11 +1289,8 @@
         let now = new Date();
         let diffTime = Math.abs(now - prev);
         let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        if (diffDays === 2) {
-          streak += 1;
-        } else if (diffDays > 2) {
-          streak = 1;
-        }
+        if (diffDays === 2) streak += 1;
+        else if (diffDays > 2) streak = 1;
       }
       localStorage.setItem("ld_streak_date", today);
       localStorage.setItem("ld_streak_count", streak);
@@ -1307,7 +1298,87 @@
     document.getElementById("streakBadge").textContent = `🔥 Стрик: ${streak} дн.`;
   }
 
-  // Загрузка термина дня
+  // Умный авторасчет порций (например, "1/2 порции овсяной каши")
+  function addAutoMealItem() {
+    const type = document.getElementById("mealType").value;
+    const rawText = document.getElementById("mealInput").value.trim();
+    if (!rawText) return;
+
+    let multiplier = 1;
+    let lower = rawText.toLowerCase();
+
+    // Проверяем дроби или количество
+    if (/1\/2|пол порции|половина|половинка/i.test(lower)) multiplier = 0.5;
+    else if (/1\/3/i.test(lower)) multiplier = 0.33;
+    else if (/1\/4|четверть/i.test(lower)) multiplier = 0.25;
+    else if (/2 порции|двойная/i.test(lower)) multiplier = 2;
+
+    // Ищем соответствие в базе продуктов
+    let matched = AUTO_FOOD_DB.find(item => item.regex.test(lower));
+    let cal = 200;
+    let prot = 8;
+
+    if (matched) {
+      cal = Math.round(matched.baseCal * multiplier);
+      prot = Math.round(matched.baseProt * multiplier);
+    } else {
+      // Если есть цифры граммов (например, 150г)
+      let gramMatch = lower.match(/(\d+)\s*г/);
+      if (gramMatch) {
+        let grams = parseInt(gramMatch[1]);
+        cal = Math.round(grams * 1.2);
+        prot = Math.round(grams * 0.1);
+      }
+    }
+
+    let meals = JSON.parse(localStorage.getItem("ld_meals") || "[]");
+    meals.unshift({ type, food: rawText, cal, prot });
+    localStorage.setItem("ld_meals", JSON.stringify(meals));
+    document.getElementById("mealInput").value = "";
+    renderMeals();
+  }
+
+  function renderMeals() {
+    let meals = JSON.parse(localStorage.getItem("ld_meals") || "[]");
+    const container = document.getElementById("mealsListContainer");
+    let totalCal = meals.reduce((sum, m) => sum + m.cal, 0);
+    let totalProt = meals.reduce((sum, m) => sum + m.prot, 0);
+
+    document.getElementById("totalDayCal").textContent = `${totalCal} ккал (${totalProt} г белка)`;
+    
+    const advice = document.getElementById("mealAiAdvice");
+    if (totalProt < 50 && meals.length > 0) {
+      advice.innerHTML = `⚠️ <strong>Совет:</strong> Сегодня маловато белка (${totalProt}г). Добавьте яйца или куриную грудку.`;
+    } else if (meals.length > 0) {
+      advice.innerHTML = `✅ <strong>Отлично!</strong> Баланс калорий и белков соблюдается прекрасно.`;
+    } else {
+      advice.innerHTML = `Добавьте блюдо выше, и приложение автоматически рассчитает калории!`;
+    }
+
+    if (!meals.length) {
+      container.innerHTML = `<div class="card" style="text-align:center; color:var(--muted); font-size:0.85rem;">Сегодня вы еще ничего не записали</div>`;
+      return;
+    }
+
+    container.innerHTML = meals.map((m, idx) => `
+      <div class="meal-card">
+        <div>
+          <span style="font-size:0.7rem; font-weight:800; color:var(--primary); text-transform:uppercase;">${m.type}</span>
+          <div style="font-weight:700; font-size:0.88rem; margin-top:2px;">${m.food}</div>
+          <div style="font-size:0.72rem; color:var(--muted); margin-top:2px;">⚡ ${m.cal} ккал | 🥩 ${m.prot} г белка</div>
+        </div>
+        <button class="delete-btn" onclick="deleteMeal(${idx})" style="width:32px; height:38px;">✕</button>
+      </div>
+    `).join("");
+  }
+
+  function deleteMeal(idx) {
+    let meals = JSON.parse(localStorage.getItem("ld_meals") || "[]");
+    meals.splice(idx, 1);
+    localStorage.setItem("ld_meals", JSON.stringify(meals));
+    renderMeals();
+  }
+
   function loadTermOfDay() {
     const term = TERMS_DB[currentTermIndex];
     const loc = term[currentLang] || term.ru;
@@ -1322,7 +1393,7 @@
       btn.textContent = "✅ Выучено";
       btn.style.opacity = "0.7";
     } else {
-      btn.textContent = currentLang === "kz" ? "✅ Естедім деп белгілеу" : currentLang === "en" ? "✅ Mark as Learned" : "✅ Отметить как выученное";
+      btn.textContent = "✅ Отметить как выученное";
       btn.style.opacity = "1";
     }
     renderLearnedTerms();
@@ -1341,10 +1412,10 @@
 
   function renderLearnedTerms() {
     let learned = JSON.parse(localStorage.getItem("ld_learned_terms") || "[]");
-    document.getElementById("learnedCount").textContent = `${currentLang === "kz" ? "Жатталды" : currentLang === "en" ? "Learned" : "Выучено"}: ${learned.length}`;
+    document.getElementById("learnedCount").textContent = `Выучено: ${learned.length}`;
     const container = document.getElementById("learnedListContainer");
     if (!learned.length) {
-      container.innerHTML = `<div class="card" style="text-align:center; color:var(--muted); font-size:0.85rem;" data-i18n="noLearned">Пока нет выученных терминов</div>`;
+      container.innerHTML = `<div class="card" style="text-align:center; color:var(--muted); font-size:0.85rem;">Пока нет выученных терминов</div>`;
       return;
     }
     container.innerHTML = learned.map((item, idx) => `
@@ -1365,61 +1436,6 @@
     loadTermOfDay();
   }
 
-  // Трекер питания
-  function addMealItem() {
-    const type = document.getElementById("mealType").value;
-    const food = document.getElementById("mealInput").value.trim();
-    const cal = parseInt(document.getElementById("mealCal").value) || 0;
-    const prot = parseInt(document.getElementById("mealProt").value) || 0;
-    if (!food) return;
-
-    let meals = JSON.parse(localStorage.getItem("ld_meals") || "[]");
-    meals.unshift({ type, food, cal, prot });
-    localStorage.setItem("ld_meals", JSON.stringify(meals));
-    document.getElementById("mealInput").value = "";
-    renderMeals();
-  }
-
-  function renderMeals() {
-    let meals = JSON.parse(localStorage.getItem("ld_meals") || "[]");
-    const container = document.getElementById("mealsListContainer");
-    let totalCal = meals.reduce((sum, m) => sum + m.cal, 0);
-    let totalProt = meals.reduce((sum, m) => sum + m.prot, 0);
-
-    document.getElementById("totalDayCal").textContent = `${totalCal} / 2000 ккал`;
-    
-    const advice = document.getElementById("mealAiAdvice");
-    if (totalProt < 60) {
-      advice.innerHTML = currentLang === "kz" ? "⚠️ Бүгін ақуыз (белок) аз қабылданды! Рационға тауық еті, жұмыртқа немесе сүт өнімдерін қосыңыз." : currentLang === "en" ? "⚠️ Low protein intake today! Add chicken breast, eggs or dairy to your diet." : "⚠️ <strong>Совет диетолога:</strong> Сегодня маловато белка! Рекомендуем добавить на ужин куриную грудку, рыбу или творог.";
-    } else {
-      advice.innerHTML = currentLang === "kz" ? "✅ Керемет! Ақуыз мөлшері қалыпты деңгейде." : currentLang === "en" ? "✅ Great job! Protein intake is on track." : "✅ <strong>Отлично!</strong> Норма белка за день соблюдается отлично.";
-    }
-
-    if (!meals.length) {
-      container.innerHTML = `<div class="card" style="text-align:center; color:var(--muted); font-size:0.85rem;" data-i18n="noMeals">Сегодня вы еще ничего не записали в дневник</div>`;
-      return;
-    }
-
-    container.innerHTML = meals.map((m, idx) => `
-      <div class="meal-card">
-        <div>
-          <span style="font-size:0.7rem; font-weight:800; color:var(--primary); text-transform:uppercase;">${m.type}</span>
-          <div style="font-weight:700; font-size:0.88rem; margin-top:2px;">${m.food}</div>
-          <div style="font-size:0.72rem; color:var(--muted); margin-top:2px;">${m.cal} ккал | ${m.prot} г белка</div>
-        </div>
-        <button onclick="deleteMeal(${idx})" style="background:none; border:none; color:var(--danger-text); cursor:pointer; font-size:1rem;">✕</button>
-      </div>
-    `).join("");
-  }
-
-  function deleteMeal(idx) {
-    let meals = JSON.parse(localStorage.getItem("ld_meals") || "[]");
-    meals.splice(idx, 1);
-    localStorage.setItem("ld_meals", JSON.stringify(meals));
-    renderMeals();
-  }
-
-  // Проверка витаминов по продукту
   function checkFoodVitamins() {
     const q = document.getElementById("vitFoodInput").value.trim().toLowerCase();
     const card = document.getElementById("vitaminResultCard");
@@ -1434,11 +1450,10 @@
     } else {
       document.getElementById("vitResIcon").textContent = "🥗";
       document.getElementById("vitResTitle").textContent = q;
-      document.getElementById("vitResDesc").textContent = currentLang === "kz" ? "Бұл өнім клетчаткаға, минералдарға және табиғи антиоксиданттарға бай." : currentLang === "en" ? "This product contains essential dietary fiber, minerals and natural antioxidants." : "Этот продукт богат клетчаткой, полезными микроэлементами и натуральными антиоксидантами для поддержки организма.";
+      document.getElementById("vitResDesc").textContent = "Этот продукт богат клетчаткой, полезными микроэлементами и натуральными антиоксидантами для поддержки организма.";
     }
   }
 
-  // Базовые функции приложения
   if (!userName) {
     document.getElementById("welcomeOverlay").classList.remove("hidden");
   } else {
@@ -1456,13 +1471,9 @@
 
   function updateHeroGreeting() {
     const msg = document.getElementById("heroWelcomeMsg");
-    if (currentLang === "kz") {
-      msg.textContent = `Сәлем, ${userName}! 👋`;
-    } else if (currentLang === "en") {
-      msg.textContent = `Hello, ${userName}! 👋`;
-    } else {
-      msg.textContent = `Привет, ${userName}! 👋`;
-    }
+    if (currentLang === "kz") msg.textContent = `Сәлем, ${userName}! 👋`;
+    else if (currentLang === "en") msg.textContent = `Hello, ${userName}! 👋`;
+    else msg.textContent = `Привет, ${userName}! 👋`;
   }
 
   function switchTab(tabName) {
@@ -1473,7 +1484,7 @@
     if (tabName === "history") renderHistory();
     if (tabName === "fav") renderFavorites();
     if (tabName === "term") loadTermOfDay();
-    if (tabName === "meals") renderMeals();
+    if (tabName === "calc-meals") renderMeals();
   }
 
   function setGoal(goal) {
@@ -1577,15 +1588,15 @@
       pattern: /\b(желатин свиной|свиной жир|кармин|е120|алкоголь|спирт|pork|gelatin pork|carmine)\b/gi,
       penalty: 50, level: "danger", haram: true,
       ru: { name: "Свиной желатин / Кармин / Спирт", desc: "Запрещенный компонент (Харам)." },
-      kz: { name: "Шошқа желатині / Кармин / Спирт", desc: "Харам компонент." },
-      en: { name: "Pork Gelatin / Carmine / Alcohol", desc: "Haram component." }
+      kz: { name: "Шошқа желатині", desc: "Харам." },
+      en: { name: "Pork Gelatin", desc: "Haram." }
     },
     {
       pattern: /\b(желатин|сычужный фермент|gelatin|rennet)\b/gi,
       penalty: 15, level: "warning", doubt: true,
       ru: { name: "Желатин (неуточненный)", desc: "Статус Машбух (сомнительно)." },
-      kz: { name: "Желатин (тегі белгісіз)", desc: "Мәшбүх." },
-      en: { name: "Gelatin (unspecified)", desc: "Mashbooh." }
+      kz: { name: "Желатин", desc: "Мәшбүх." },
+      en: { name: "Gelatin", desc: "Mashbooh." }
     },
     {
       pattern: /\b(сахар[а-я]*|қант[а-я]*|sugar)\b/gi,
@@ -1612,8 +1623,8 @@
       pattern: /\b(глутамат натрия|натрий глутаматы|е\s?621|e\s?621|усилител[а-я]* вкуса|monosodium glutamate|msg)\b/gi,
       penalty: 15, level: "warning",
       ru: { name: "Глутамат натрия (Е621)", desc: "Усилитель вкуса." },
-      kz: { name: "Натрий глутаматы (Е621)", desc: "Дәм күшейткіш." },
-      en: { name: "MSG (E621)", desc: "Flavor enhancer." }
+      kz: { name: "Натрий глутаматы", desc: "Дәм күшейткіш." },
+      en: { name: "MSG", desc: "Flavor enhancer." }
     }
   ];
 
@@ -1786,7 +1797,7 @@
     input.value = "";
     box.scrollTop = box.scrollHeight;
     setTimeout(() => {
-      box.innerHTML += `<div class="msg bot">Оценка последнего продукта: ${lastScore}/100. Спрашивайте про витамины или КБЖУ!</div>`;
+      box.innerHTML += `<div class="msg bot">Оценка последнего продукта: ${lastScore}/100. Спрашивайте про КБЖУ или витамины!</div>`;
       box.scrollTop = box.scrollHeight;
     }, 400);
   }
@@ -1837,7 +1848,6 @@
     runAnalysis();
   }
 
-  // Инициализация
   updateStreak();
   const initHist = JSON.parse(localStorage.getItem("ld_app_hist") || "[]");
   const initFavs = JSON.parse(localStorage.getItem("ld_app_favs") || "[]");
