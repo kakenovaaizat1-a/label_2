@@ -151,7 +151,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Экран приветствия */
     .welcome-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -521,7 +520,6 @@
       margin-top: 10px;
     }
 
-    /* Калькулятор КБЖУ */
     .calc-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -529,10 +527,40 @@
       margin-bottom: 10px;
     }
 
+    /* Элементы истории с кнопкой удаления */
+    .history-item-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .history-card {
+      flex: 1;
+      padding: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      margin-bottom: 0 !important;
+    }
+    .delete-btn {
+      background: var(--danger-bg);
+      color: var(--danger-text);
+      border: none;
+      width: 36px;
+      height: 44px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .chat-box {
       display: flex;
       flex-direction: column;
-      height: 60vh;
+      height: 58vh;
     }
 
     .chat-messages {
@@ -615,10 +643,10 @@
       align-items: center;
       gap: 2px;
       color: var(--muted);
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: 600;
       cursor: pointer;
-      width: 16.6%;
+      width: 14.2%;
     }
 
     .nav-btn.active {
@@ -626,7 +654,7 @@
     }
 
     .nav-icon {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
     }
 
     .hidden {
@@ -636,7 +664,6 @@
 </head>
 <body>
 
-<!-- Экран приветствия (появляется при первом входе) -->
 <div id="welcomeOverlay" class="welcome-overlay hidden">
   <div class="welcome-modal">
     <div style="font-size: 2.2rem; margin-bottom: 6px;">👋</div>
@@ -775,11 +802,23 @@
     </div>
   </section>
 
-  <!-- ЭКРАН 3: КАЛЬКУЛЯТОР КБЖУ -->
+  <!-- ЭКРАН 3: ТЕРМИН ДНЯ -->
+  <section id="screen-term" class="screen">
+    <div class="section-title" data-i18n="termHeader">💡 Термин дня о питании</div>
+    <div class="card" style="background: linear-gradient(135deg, var(--card) 0%, var(--primary-soft) 100%);">
+      <div style="font-size: 2rem; margin-bottom: 8px;" id="termIcon">🧪</div>
+      <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 8px;" id="termTitle">Глутамат натрия (Е621)</h3>
+      <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text);" id="termDesc">Усилитель вкуса, который стимулирует рецепторы языка, заставляя мозг воспринимать пищу более аппетитной и провоцируя переедание.</p>
+    </div>
+    <div class="card" style="padding: 14px; text-align: center; color: var(--muted); font-size: 0.82rem;" data-i18n="termFooter">
+      Каждый день в приложении открывается новый полезный факт!
+    </div>
+  </section>
+
+  <!-- ЭКРАН 4: КАЛЬКУЛЯТОР КБЖУ -->
   <section id="screen-calc" class="screen">
     <div class="card">
       <div class="section-title" data-i18n="calcHeader">📊 Калькулятор суточной нормы КБЖУ</div>
-      <p style="font-size: 0.82rem; color: var(--muted); margin-bottom: 14px;" data-i18n="calcSub">Рассчитайте персональную норму калорий и макронутриентов.</p>
       
       <div class="calc-row">
         <div>
@@ -801,8 +840,8 @@
           <label style="font-size: 0.78rem; font-weight: 700; color: var(--muted);" data-i18n="activityLbl">Активность</label>
           <select id="calcActivity" style="width:100%; padding:12px; border:1.5px solid var(--border); border-radius:12px; background:var(--card); color:var(--text); font-size:0.9rem; outline:none; margin-bottom:12px;">
             <option value="1.2" data-i18n="act1">Минимальная</option>
-            <option value="1.375" selected data-i18n="act2">Умеренная (3 р/нед)</option>
-            <option value="1.55" data-i18n="act3">Активная (5 р/нед)</option>
+            <option value="1.375" selected data-i18n="act2">Умеренная</option>
+            <option value="1.55" data-i18n="act3">Активная</option>
           </select>
         </div>
       </div>
@@ -821,13 +860,13 @@
     </div>
   </section>
 
-  <!-- ЭКРАН 4: ИЗБРАННОЕ -->
+  <!-- ЭКРАН 5: ИЗБРАННОЕ -->
   <section id="screen-fav" class="screen">
     <div class="section-title" data-i18n="favTitle">⭐ Избранные продукты</div>
     <div id="favoritesContainer"></div>
   </section>
 
-  <!-- ЭКРАН 5: ИИ-ПОМОЩНИК -->
+  <!-- ЭКРАН 6: ИИ-ПОМОЩНИК -->
   <section id="screen-ai" class="screen">
     <div class="card chat-box">
       <div class="section-title" style="border-bottom: 1px solid var(--border); padding-bottom: 10px;">
@@ -843,9 +882,12 @@
     </div>
   </section>
 
-  <!-- ЭКРАН 6: ИСТОРИЯ -->
+  <!-- ЭКРАН 7: ИСТОРИЯ -->
   <section id="screen-history" class="screen">
-    <div class="section-title" data-i18n="histTitle">🕒 Недавние проверки</div>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+      <div class="section-title" style="margin-bottom: 0;" data-i18n="histTitle">🕒 Недавние проверки</div>
+      <button onclick="clearHistory()" style="background: none; border: none; color: var(--primary); font-size: 0.78rem; font-weight: 700; cursor: pointer;" data-i18n="clearHistBtn">Очистить всё</button>
+    </div>
     <div id="historyContainer"></div>
   </section>
 
@@ -858,6 +900,10 @@
       <span class="nav-icon">🔍</span>
       <span data-i18n="navScan">Сканер</span>
     </button>
+    <button class="nav-btn" id="tab-term" onclick="switchTab('term')">
+      <span class="nav-icon">💡</span>
+      <span data-i18n="navTerm">Термин</span>
+    </button>
     <button class="nav-btn" id="tab-calc" onclick="switchTab('calc')">
       <span class="nav-icon">📊</span>
       <span data-i18n="navCalc">КБЖУ</span>
@@ -865,10 +911,6 @@
     <button class="nav-btn" id="tab-fav" onclick="switchTab('fav')">
       <span class="nav-icon">⭐</span>
       <span data-i18n="navFav">Избранное</span>
-    </button>
-    <button class="nav-btn" id="tab-ai" onclick="switchTab('ai')">
-      <span class="nav-icon">🤖</span>
-      <span data-i18n="navAi">ИИ-Чат</span>
     </button>
     <button class="nav-btn" id="tab-history" onclick="switchTab('history')">
       <span class="nav-icon">🕒</span>
@@ -900,14 +942,12 @@
       qBarSub: "Скрытый сахар и КБЖУ",
       qClean: "Хумус",
       qCleanSub: "Эталон чистого состава",
-      homeAiTitle: "🤖 Спросить ИИ-диетолога",
-      homeAiSub: "Узнай, чем заменить вредные сладости",
       scanTitle: "📋 Состав продукта или название",
       goalSlim: "🥗 Похудение",
       goalMass: "💪 Набор",
       goalKids: "👶 Детское",
       uploadBtn: "Загрузить фото этикетки / штрих-кода",
-      uploadHint: "Нажмите, чтобы выбрать фото упаковки",
+      uploadHint: "Автораспознавание состава с упаковки",
       analyzeBtn: "Проверить состав",
       calLbl: "Калории",
       protLbl: "Белки",
@@ -921,33 +961,29 @@
       aiHello: "Привет! Я твой ИИ-помощник LabelDecoder. Спроси меня про любой продукт, сахар или Халяль!",
       favTitle: "⭐ Избранные продукты",
       histTitle: "🕒 Недавние проверки",
+      clearHistBtn: "Очистить всё",
       calcHeader: "📊 Калькулятор суточной нормы КБЖУ",
-      calcSub: "Рассчитайте персональную норму калорий и БЖУ.",
       weightLbl: "Вес (кг)",
       heightLbl: "Рост (см)",
       ageLbl: "Возраст",
       activityLbl: "Активность",
       act1: "Минимальная",
-      act2: "Умеренная (3 р/нед)",
-      act3: "Активная (5 р/нед)",
+      act2: "Умеренная",
+      act3: "Активная",
       calcBtn: "Рассчитать норму",
       calcResTitle: "✨ Ваша суточная норма:",
+      termHeader: "💡 Термин дня о питании",
+      termFooter: "Каждый день в приложении открывается новый полезный факт!",
       navHome: "Главная",
       navScan: "Сканер",
+      navTerm: "Термин",
       navCalc: "КБЖУ",
       navFav: "Избранное",
-      navAi: "ИИ-Чат",
       navHist: "История",
-      halalOk: "🟢 Халяль (Разрешено)",
-      halalDoubt: "🟡 Сомнительно (Машбух — проверьте желатин)",
-      halalNo: "🔴 Харам (Запрещенные компоненты)",
       vClean: "Отличный чистый состав!",
       vWarn: "Есть спорные добавки",
       vDanger: "Много сахара и химии",
-      altClean: "Замена не требуется — это полезный натуральный продукт.",
-      altSnack: "Замените на запеченные овощные чипсы, нутовые снеки или цельнозерновые хлебцы.",
-      altSweet: "Замените на орехово-фруктовый батончик без сахара или горький шоколад (75%+).",
-      altDefault: "Выбирайте продукты с коротким составом без сахара и пальмового масла.",
+      altDefault: "Выбирайте продукты без сахара и пальмового масла.",
       welTitle: "Добро пожаловать в LabelDecoder!",
       welSub: "Как к вам обращаться?",
       welBtn: "Начать работу"
@@ -966,8 +1002,6 @@
       qBarSub: "Жасырын қант және КБЖУ",
       qClean: "Хумус",
       qCleanSub: "Таза құрам үлгісі",
-      homeAiTitle: "🤖 ИИ-диетологтан сұрау",
-      homeAiSub: "Зиянды тәттілерді немен алмастыруға болады?",
       scanTitle: "📋 Өнім құрамы немесе атауы",
       goalSlim: "🥗 Салмақ тастау",
       goalMass: "💪 Салмақ қосу",
@@ -987,32 +1021,28 @@
       aiHello: "Сәлем! Мен сенің LabelDecoder ИИ-көмекшіңмін. Кез келген өнім, қант немесе Халяль туралы сұра!",
       favTitle: "⭐ Таңдаулы өнімдер",
       histTitle: "🕒 Соңғы тексерулер",
+      clearHistBtn: "Барлығын тазарту",
       calcHeader: "📊 КБЖУ тәуліктік норма калькуляторы",
-      calcSub: "Жеке калория және БЖУ нормасын есептеңіз.",
       weightLbl: "Салмақ (кг)",
       heightLbl: "Бой (см)",
       ageLbl: "Жасы",
       activityLbl: "Белсенділік",
       act1: "Минималды",
-      act2: "Орташа (аптасына 3 р)",
-      act3: "Белсенді (аптасына 5 р)",
+      act2: "Орташа",
+      act3: "Белсенді",
       calcBtn: "Норманы есептеу",
       calcResTitle: "✨ Сіздің тәуліктік нормаңыз:",
+      termHeader: "💡 Күн термині",
+      termFooter: "Күн сайын жаңа пайдалы фактілер!",
       navHome: "Басты бет",
       navScan: "Сканер",
+      navTerm: "Термин",
       navCalc: "КБЖУ",
       navFav: "Таңдаулы",
-      navAi: "ИИ-Чат",
       navHist: "Тарих",
-      halalOk: "🟢 Халяль (Рұқсат етілген)",
-      halalDoubt: "🟡 Күмәнді (Мәшбүх — желатинді тексеріңіз)",
-      halalNo: "🔴 Харам (Тыйым салынған компоненттер бар)",
       vClean: "Тамаша таза құрам!",
       vWarn: "Күмәнді қоспалар бар",
       vDanger: "Қант пен химия өте көп",
-      altClean: "Алмастыру қажет емес — бұл табиғи пайдалы өнім.",
-      altSnack: "Пеште пісірілген көкөніс чипстеріне алмастырыңыз.",
-      altSweet: "Қантсыз жаңғақ батончигіне немесе ащы шоколадқа алмастырыңыз.",
       altDefault: "Қантсыз және пальма майынсыз өнімдерді таңдаңыз.",
       welTitle: "LabelDecoder қосымшасына қош келдіңіз!",
       welSub: "Сізге қалай кайрылайық?",
@@ -1032,14 +1062,12 @@
       qBarSub: "Hidden sugar & macros",
       qClean: "Hummus",
       qCleanSub: "Clean label benchmark",
-      homeAiTitle: "🤖 Ask AI Nutritionist",
-      homeAiSub: "Find healthier swaps for snacks",
       scanTitle: "📋 Product ingredients or name",
       goalSlim: "🥗 Weight Loss",
       goalMass: "💪 Muscle Gain",
       goalKids: "👶 For Kids",
       uploadBtn: "Upload label / barcode photo",
-      uploadHint: "Tap to select a package photo",
+      uploadHint: "Tap to select package photo",
       analyzeBtn: "Analyze Ingredients",
       calLbl: "Calories",
       protLbl: "Protein",
@@ -1050,41 +1078,53 @@
       altTitle: "💡 Healthier Alternative:",
       voiceBtn: "Read aloud result",
       aiTitle: "AI Nutrition Assistant",
-      aiHello: "Hi! I'm your LabelDecoder AI assistant. Ask me about any product, sugar or Halal status!",
+      aiHello: "Hi! I'm your LabelDecoder AI assistant.",
       favTitle: "⭐ Favorite Products",
       histTitle: "🕒 Recent Scans",
+      clearHistBtn: "Clear all",
       calcHeader: "📊 Daily Macros Calculator",
-      calcSub: "Calculate your personal daily calorie intake.",
       weightLbl: "Weight (kg)",
       heightLbl: "Height (cm)",
       ageLbl: "Age",
       activityLbl: "Activity",
       act1: "Minimal",
-      act2: "Moderate (3x/wk)",
-      act3: "Active (5x/wk)",
+      act2: "Moderate",
+      act3: "Active",
       calcBtn: "Calculate",
       calcResTitle: "✨ Your daily target:",
+      termHeader: "💡 Term of the day",
+      termFooter: "New nutrition fact every day!",
       navHome: "Home",
       navScan: "Scanner",
+      navTerm: "Term",
       navCalc: "Macros",
       navFav: "Favorites",
-      navAi: "AI Chat",
       navHist: "History",
-      halalOk: "🟢 Halal (Permissible)",
-      halalDoubt: "🟡 Doubtful (Mashbooh)",
-      halalNo: "🔴 Haram (Forbidden)",
       vClean: "Great Clean Label!",
       vWarn: "Contains Controversial Additives",
       vDanger: "High in Sugar & Chemicals",
-      altClean: "No replacement needed.",
-      altSnack: "Swap for baked veggie chips.",
-      altSweet: "Swap for a natural nut bar.",
-      altDefault: "Look for short-ingredient products.",
+      altDefault: "Look for products without added sugar.",
       welTitle: "Welcome to LabelDecoder!",
       welSub: "What is your name?",
       welBtn: "Get Started"
     }
   };
+
+  const TERMS_DB = [
+    { icon: "🧪", ru: { title: "Глутамат натрия (Е621)", desc: "Усилитель вкуса, который обманывает рецепторы языка и заставляет съесть больше нормы." }, kz: { title: "Натрий глутаматы (Е621)", desc: "Тіл рецепторларын алдап, өнімді көп жеуге итермелейтін дәм күшейткіш." }, en: { title: "Monosodium Glutamate (E621)", desc: "Flavor enhancer that stimulates tongue receptors." } },
+    { icon: "🌾", ru: { title: "Мальтодекстрин", desc: "Быстрый углевод из крахмала. Повышает сахар в крови быстрее, чем обычный сахар." }, kz: { title: "Мальтодекстрин", desc: "Крахмаздан алынатын жылдам көмірсу. Қандағы қантты өте тез көтереді." }, en: { title: "Maltodextrin", desc: "A fast carbohydrate that spikes blood sugar quickly." } },
+    { icon: "🌿", ru: { title: "Кармин (Е120)", desc: "Красный краситель животного происхождения, получаемый из насекомых. Требует проверки на Халяль." }, kz: { title: "Кармин (Е120)", desc: "Жәндіктерден алынатын қызыл бояғыш. Халяль күйін тексеруді талап етеді." }, en: { title: "Carmine (E120)", desc: "Red dye derived from insects. Requires Halal check." } },
+    { icon: "🍯", ru: { title: "Глюкозный сироп", desc: "Дешевый жидкий сахар, который добавляют в сладости для продления срока годности." }, kz: { title: "Глюкоза сиропы", desc: "Тәттілердің сақтау мерзімін ұзарту үшін қосылатын арзан сұйық қант." }, en: { title: "Glucose Syrup", desc: "Inexpensive liquid sugar used to extend shelf life." } }
+  ];
+
+  function loadTermOfDay() {
+    const dayIndex = new Date().getDate() % TERMS_DB.length;
+    const term = TERMS_DB[dayIndex];
+    const loc = term[currentLang] || term.ru;
+    document.getElementById("termIcon").textContent = term.icon;
+    document.getElementById("termTitle").textContent = loc.title;
+    document.getElementById("termDesc").textContent = loc.desc;
+  }
 
   const PRODUCTS_DB = {
     chips: {
@@ -1169,7 +1209,6 @@
     }
   ];
 
-  // Проверка приветствия при старте
   if (!userName) {
     document.getElementById("welcomeOverlay").classList.remove("hidden");
   } else {
@@ -1203,6 +1242,7 @@
     document.getElementById("tab-" + tabName).classList.add("active");
     if (tabName === "history") renderHistory();
     if (tabName === "fav") renderFavorites();
+    if (tabName === "term") loadTermOfDay();
   }
 
   function setGoal(goal) {
@@ -1239,6 +1279,7 @@
       currentLang = btn.dataset.lang;
       applyLang();
       updateHeroGreeting();
+      loadTermOfDay();
     });
   });
 
@@ -1394,7 +1435,7 @@
     if (currentGoal === "slim") {
       adviceTitle.textContent = currentLang === "kz" ? "🎯 Салмақ тастау мақсаты үшін:" : currentLang === "en" ? "🎯 For Weight Loss Goal:" : "🎯 Вердикт для цели «Похудение»:";
       if (score >= 80) {
-        adviceText.textContent = currentLang === "kz" ? "✅ Диета кезінде қауіпсіз жеуге болады." : currentLang === "en" ? "✅ Safe to consume during a weight-loss diet." : "✅ Отличный выбор! Можно смело есть при похудении.";
+        adviceText.textContent = currentLang === "kz" ? "✅ Диета кезінде қауіпсіз жеуге болады." : currentLang === "en" ? "✅ Safe to consume during weight-loss." : "✅ Отличный выбор! Можно смело есть при похудении.";
       } else if (score >= 45) {
         adviceText.textContent = currentLang === "kz" ? "⚠️ Аз мөлшерде жеуге болады." : currentLang === "en" ? "⚠️ Consume in moderation." : "⚠️ Употребляйте в умеренных количествах.";
       } else {
@@ -1417,14 +1458,12 @@
     }
   }
 
-  // Расчет КБЖУ в отдельном блоке
   function calculateMacros() {
     const w = parseFloat(document.getElementById("calcWeight").value) || 60;
     const h = parseFloat(document.getElementById("calcHeight").value) || 170;
     const a = parseFloat(document.getElementById("calcAge").value) || 16;
     const act = parseFloat(document.getElementById("calcActivity").value) || 1.375;
 
-    // Формула Миффлина-Сан Жеора для девушек
     let bmr = (10 * w) + (6.25 * h) - (5 * a) - 161;
     let tdee = Math.round(bmr * act);
 
@@ -1528,7 +1567,7 @@
     let list = JSON.parse(localStorage.getItem("ld_app_hist") || "[]");
     list = list.filter(item => item.full !== text);
     list.unshift({ title: text.slice(0, 32) + "...", full: text, score: score });
-    if (list.length > 8) list.pop();
+    if (list.length > 10) list.pop();
     localStorage.setItem("ld_app_hist", JSON.stringify(list));
     document.getElementById("statScans").textContent = list.length;
   }
@@ -1536,16 +1575,33 @@
   function renderHistory() {
     let list = JSON.parse(localStorage.getItem("ld_app_hist") || "[]");
     const container = document.getElementById("historyContainer");
+    document.getElementById("statScans").textContent = list.length;
+
     if (!list.length) {
       container.innerHTML = `<div class="card" style="text-align:center; color:var(--muted);">История пуста</div>`;
       return;
     }
-    container.innerHTML = list.map(item => `
-      <div class="card" style="padding:14px; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="loadFromHist('${item.full.replace(/'/g, "\\'")}')">
-        <div style="font-size:0.88rem; font-weight:600;">${item.title}</div>
-        <div style="font-weight:800; color:var(--primary);">${item.score}/100</div>
+    container.innerHTML = list.map((item, index) => `
+      <div class="history-item-wrap">
+        <div class="card history-card" onclick="loadFromHist('${item.full.replace(/'/g, "\\'")}')">
+          <div style="font-size:0.88rem; font-weight:600;">${item.title}</div>
+          <div style="font-weight:800; color:var(--primary);">${item.score}/100</div>
+        </div>
+        <button class="delete-btn" onclick="deleteHistoryItem(${index})" title="Удалить">✕</button>
       </div>
     `).join("");
+  }
+
+  function deleteHistoryItem(index) {
+    let list = JSON.parse(localStorage.getItem("ld_app_hist") || "[]");
+    list.splice(index, 1);
+    localStorage.setItem("ld_app_hist", JSON.stringify(list));
+    renderHistory();
+  }
+
+  function clearHistory() {
+    localStorage.setItem("ld_app_hist", "[]");
+    renderHistory();
   }
 
   function loadFromHist(text) {
