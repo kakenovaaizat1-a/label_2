@@ -67,13 +67,13 @@
       flex-direction: column;
       position: relative;
       box-shadow: 0 0 40px rgba(0,0,0,0.15);
-      padding-bottom: 80px;
+      padding-bottom: 84px;
     }
 
     .app-header {
       background: var(--card);
       backdrop-filter: blur(10px);
-      padding: 14px 20px;
+      padding: 12px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -85,7 +85,7 @@
 
     .app-brand {
       font-weight: 800;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--primary);
       display: flex;
       align-items: center;
@@ -102,21 +102,21 @@
       background: var(--primary-soft);
       border: 1px solid var(--border);
       color: var(--primary);
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
       border-radius: 8px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .lang-pills {
       display: flex;
       background: var(--primary-soft);
-      padding: 3px;
-      border-radius: 9px;
+      padding: 2px;
+      border-radius: 8px;
       gap: 2px;
     }
 
@@ -124,9 +124,9 @@
       border: none;
       background: transparent;
       color: var(--muted);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 700;
-      padding: 3px 6px;
+      padding: 3px 5px;
       border-radius: 6px;
       cursor: pointer;
     }
@@ -138,7 +138,7 @@
 
     .screen {
       display: none;
-      padding: 20px;
+      padding: 16px;
       animation: fadeIn 0.25s ease;
     }
 
@@ -147,7 +147,7 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+      from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -198,33 +198,49 @@
     .hero-banner {
       background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
       color: #fff;
-      border-radius: 22px;
-      padding: 22px 20px;
-      box-shadow: 0 12px 25px rgba(236, 72, 153, 0.28);
-      margin-bottom: 20px;
+      border-radius: 20px;
+      padding: 20px 18px;
+      box-shadow: 0 10px 22px rgba(236, 72, 153, 0.25);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .streak-badge {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(4px);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .hero-banner h1 {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 800;
       line-height: 1.25;
       margin-bottom: 6px;
     }
 
     .hero-banner p {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       opacity: 0.92;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .hero-cta {
       background: #ffffff;
       color: var(--primary-dark);
       border: none;
-      padding: 10px 16px;
+      padding: 10px 14px;
       border-radius: 12px;
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -234,34 +250,34 @@
     .stats-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 22px;
+      gap: 10px;
+      margin-bottom: 18px;
     }
 
     .stat-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
+      border-radius: 14px;
+      padding: 12px;
       text-align: center;
       box-shadow: var(--shadow);
     }
 
     .stat-num {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: var(--primary);
     }
 
     .stat-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--muted);
     }
 
     .section-title {
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       color: var(--text);
     }
 
@@ -269,47 +285,47 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .quick-item {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
+      border-radius: 14px;
+      padding: 12px;
       cursor: pointer;
       box-shadow: var(--shadow);
     }
 
     .quick-icon {
-      font-size: 1.5rem;
-      margin-bottom: 6px;
+      font-size: 1.4rem;
+      margin-bottom: 4px;
       display: block;
     }
 
     .quick-name {
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
     }
 
     .quick-sub {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: var(--muted);
     }
 
     .card {
       background: var(--card);
-      border-radius: 20px;
-      padding: 20px;
+      border-radius: 18px;
+      padding: 16px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .goal-selector {
       display: flex;
       gap: 6px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .goal-btn {
@@ -317,8 +333,8 @@
       background: var(--primary-soft);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 8px 4px;
-      font-size: 0.72rem;
+      padding: 7px 4px;
+      font-size: 0.7rem;
       font-weight: 700;
       color: var(--muted);
       cursor: pointer;
@@ -334,37 +350,37 @@
     .upload-box {
       border: 2px dashed var(--primary);
       background: var(--primary-soft);
-      border-radius: 16px;
-      padding: 18px;
+      border-radius: 14px;
+      padding: 16px;
       text-align: center;
       cursor: pointer;
-      margin-bottom: 14px;
-    }
-
-    textarea, input[type="number"] {
-      width: 100%;
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
-      font-size: 0.9rem;
-      color: var(--text);
-      outline: none;
-      background: var(--card);
       margin-bottom: 12px;
     }
 
-    textarea:focus, input[type="number"]:focus {
+    textarea, input[type="text"], input[type="number"], select {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 11px;
+      font-size: 0.88rem;
+      color: var(--text);
+      outline: none;
+      background: var(--card);
+      margin-bottom: 10px;
+    }
+
+    textarea:focus, input:focus, select:focus {
       border-color: var(--primary);
     }
 
     .btn-main {
       width: 100%;
-      padding: 13px;
+      padding: 12px;
       background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
       color: #fff;
       border: none;
       border-radius: 12px;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 6px 16px rgba(236, 72, 153, 0.25);
@@ -374,7 +390,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .result-left {
@@ -384,8 +400,8 @@
     }
 
     .score-ring {
-      width: 68px;
-      height: 68px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
       border: 5px solid var(--primary);
       display: flex;
@@ -393,21 +409,21 @@
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       flex-shrink: 0;
     }
 
     .score-ring small {
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       color: var(--muted);
     }
 
     .fav-action-btn {
       background: var(--primary-soft);
       border: 1px solid var(--border);
-      font-size: 1.2rem;
-      width: 40px;
-      height: 40px;
+      font-size: 1.1rem;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
@@ -419,7 +435,7 @@
       display: inline-block;
       padding: 3px 8px;
       border-radius: 10px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
       margin-top: 4px;
     }
@@ -430,19 +446,19 @@
       background: var(--primary-soft);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 10px 14px;
-      margin-bottom: 14px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
       text-align: center;
     }
 
     .macros-strip div span {
       display: block;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       color: var(--muted);
     }
 
     .macros-strip div strong {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--primary);
     }
 
@@ -451,8 +467,8 @@
       border: 1.5px solid var(--border);
       border-radius: 12px;
       padding: 12px;
-      margin-bottom: 14px;
-      font-size: 0.88rem;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
     }
 
     .goal-advice-box strong {
@@ -465,10 +481,10 @@
       background: var(--primary-soft);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 12px;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      margin-bottom: 14px;
+      padding: 10px;
+      font-size: 0.83rem;
+      line-height: 1.5;
+      margin-bottom: 12px;
     }
 
     mark.danger {
@@ -490,19 +506,19 @@
     .chem-item {
       background: var(--primary-soft);
       border-left: 4px solid #e11d48;
-      padding: 10px 12px;
-      border-radius: 10px;
-      margin-bottom: 8px;
-      font-size: 0.83rem;
+      padding: 9px 10px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      font-size: 0.82rem;
     }
 
     .alt-card {
       background: var(--primary-soft);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 12px;
-      font-size: 0.85rem;
-      margin-top: 10px;
+      padding: 10px;
+      font-size: 0.83rem;
+      margin-top: 8px;
     }
 
     .voice-btn {
@@ -510,33 +526,45 @@
       color: var(--primary);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 8px 12px;
-      font-size: 0.78rem;
+      padding: 7px 10px;
+      font-size: 0.75rem;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
-    .calc-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+    /* Трекер питания */
+    .meal-card {
+      background: var(--primary-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .vitamin-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
       margin-bottom: 10px;
     }
 
-    /* Элементы истории с кнопкой удаления */
     .history-item-wrap {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .history-card {
       flex: 1;
-      padding: 14px;
+      padding: 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -547,11 +575,11 @@
       background: var(--danger-bg);
       color: var(--danger-text);
       border: none;
-      width: 36px;
-      height: 44px;
-      border-radius: 12px;
+      width: 34px;
+      height: 42px;
+      border-radius: 10px;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 0.9rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -560,7 +588,7 @@
     .chat-box {
       display: flex;
       flex-direction: column;
-      height: 58vh;
+      height: 56vh;
     }
 
     .chat-messages {
@@ -575,7 +603,7 @@
     .msg {
       padding: 10px 14px;
       border-radius: 14px;
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       max-width: 85%;
     }
 
@@ -596,18 +624,18 @@
     .chat-input-bar {
       display: flex;
       gap: 8px;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .chat-input-bar input {
       flex: 1;
-      padding: 12px;
+      padding: 11px;
       border: 1.5px solid var(--border);
       background: var(--card);
       color: var(--text);
       border-radius: 12px;
       outline: none;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       margin-bottom: 0;
     }
 
@@ -631,7 +659,7 @@
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-around;
-      padding: 8px 0 12px;
+      padding: 6px 0 10px;
       z-index: 20;
     }
 
@@ -643,10 +671,10 @@
       align-items: center;
       gap: 2px;
       color: var(--muted);
-      font-size: 0.6rem;
+      font-size: 0.55rem;
       font-weight: 600;
       cursor: pointer;
-      width: 14.2%;
+      width: 12.5%;
     }
 
     .nav-btn.active {
@@ -654,7 +682,7 @@
     }
 
     .nav-icon {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
     }
 
     .hidden {
@@ -666,7 +694,7 @@
 
 <div id="welcomeOverlay" class="welcome-overlay hidden">
   <div class="welcome-modal">
-    <div style="font-size: 2.2rem; margin-bottom: 6px;">👋</div>
+    <div style="font-size: 2rem; margin-bottom: 6px;">👋</div>
     <h2 id="welTitle">Добро пожаловать в LabelDecoder!</h2>
     <p id="welSub">Как к вам обращаться?</p>
     <input type="text" id="userNameInput" class="welcome-input" placeholder="Введите ваше имя..." />
@@ -690,8 +718,9 @@
   <!-- ЭКРАН 1: ГЛАВНАЯ -->
   <section id="screen-home" class="screen active">
     <div class="hero-banner">
+      <div class="streak-badge" id="streakBadge">🔥 Стрик: 1 дн.</div>
       <h1 id="heroWelcomeMsg">Привет!</h1>
-      <p data-i18n="heroSub">Проверка Халяль, скрытый сахар, КБЖУ, расшифровка химии и умные замены</p>
+      <p data-i18n="heroSub">Проверка Халяль, скрытый сахар, КБЖУ, витамины и умные замены</p>
       <button class="hero-cta" onclick="switchTab('scanner')">
         <span>🔍</span> <span data-i18n="heroBtn">Проверить продукт</span>
       </button>
@@ -733,7 +762,7 @@
     </div>
   </section>
 
-  <!-- ЭКРАН 2: СКАНЕР И РЕЗУЛЬТАТЫ -->
+  <!-- ЭКРАН 2: СКАНЕР -->
   <section id="screen-scanner" class="screen">
     <div class="card">
       <div class="section-title" data-i18n="scanTitle">📋 Состав продукта или название</div>
@@ -746,9 +775,9 @@
 
       <div class="upload-box" onclick="document.getElementById('fileInput').click()">
         <input type="file" id="fileInput" accept="image/*" hidden onchange="handlePhotoUpload(event)" />
-        <div style="font-size: 1.6rem; margin-bottom: 4px;">📸</div>
-        <div style="font-weight: 700; font-size: 0.88rem;" data-i18n="uploadBtn">Загрузить фото этикетки / штрих-кода</div>
-        <div style="font-size: 0.75rem; color: var(--muted);" id="photoStatus" data-i18n="uploadHint">Автораспознавание состава с упаковки</div>
+        <div style="font-size: 1.5rem; margin-bottom: 4px;">📸</div>
+        <div style="font-weight: 700; font-size: 0.85rem;" data-i18n="uploadBtn">Загрузить фото этикетки / штрих-кода</div>
+        <div style="font-size: 0.72rem; color: var(--muted);" id="photoStatus" data-i18n="uploadHint">Автораспознавание с упаковки</div>
       </div>
 
       <textarea id="ingredientsInput" rows="3" placeholder="Вставьте состав с упаковки или название (Чипсы, Кола)..."></textarea>
@@ -764,7 +793,7 @@
             <small>/100</small>
           </div>
           <div>
-            <h3 id="verdictTitle" style="font-size: 1.1rem;">Результат</h3>
+            <h3 id="verdictTitle" style="font-size: 1.05rem;">Результат</h3>
             <div id="halalBadge" class="halal-pill">🟢 Халяль</div>
           </div>
         </div>
@@ -802,43 +831,113 @@
     </div>
   </section>
 
-  <!-- ЭКРАН 3: ТЕРМИН ДНЯ -->
-  <section id="screen-term" class="screen">
-    <div class="section-title" data-i18n="termHeader">💡 Термин дня о питании</div>
-    <div class="card" style="background: linear-gradient(135deg, var(--card) 0%, var(--primary-soft) 100%);">
-      <div style="font-size: 2rem; margin-bottom: 8px;" id="termIcon">🧪</div>
-      <h3 style="color: var(--primary); font-size: 1.2rem; margin-bottom: 8px;" id="termTitle">Глутамат натрия (Е621)</h3>
-      <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text);" id="termDesc">Усилитель вкуса, который стимулирует рецепторы языка, заставляя мозг воспринимать пищу более аппетитной и провоцируя переедание.</p>
+  <!-- ЭКРАН 3: ТРЕКЕР ПИТАНИЯ (Ежедневное меню + Советы) -->
+  <section id="screen-meals" class="screen">
+    <div class="section-title" data-i18n="mealHeader">🍽️ Трекер приема пищи</div>
+    <div class="card">
+      <label style="font-size: 0.78rem; font-weight: 700; color: var(--muted);" data-i18n="mealTypeLbl">Прием пищи</label>
+      <select id="mealType" style="margin-bottom: 8px;">
+        <option value="Завтрак" data-i18n="mBreakfast">🥣 Завтрак</option>
+        <option value="Обед" data-i18n="mLunch">🍲 Обед</option>
+        <option value="Ужин" data-i18n="mDinner">🥗 Ужин</option>
+        <option value="Перекус" data-i18n="mSnack">🍎 Перекус</option>
+      </select>
+
+      <label style="font-size: 0.78rem; font-weight: 700; color: var(--muted);" data-i18n="mealFoodLbl">Что вы съели?</label>
+      <input type="text" id="mealInput" placeholder="Например: Куриная грудка с гречкой и салатом" />
+
+      <label style="font-size: 0.78rem; font-weight: 700; color: var(--muted);" data-i18n="mealCalLbl">Калории (ккал) и Белки (г)</label>
+      <div class="calc-row">
+        <input type="number" id="mealCal" placeholder="450 ккал" value="400" />
+        <input type="number" id="mealProt" placeholder="Белки (г)" value="30" />
+      </div>
+
+      <button class="btn-main" onclick="addMealItem()" data-i18n="mealAddBtn">Добавить в дневник</button>
     </div>
-    <div class="card" style="padding: 14px; text-align: center; color: var(--muted); font-size: 0.82rem;" data-i18n="termFooter">
-      Каждый день в приложении открывается новый полезный факт!
+
+    <!-- Итоги дня и советы ИИ -->
+    <div class="card" style="background: var(--primary-soft);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <strong style="color: var(--primary);" data-i18n="daySummary">📊 Итоги за сегодня:</strong>
+        <span style="font-weight: 800; font-size: 0.95rem;" id="totalDayCal">0 / 2000 ккал</span>
+      </div>
+      <p style="font-size: 0.84rem; line-height: 1.5; color: var(--text);" id="mealAiAdvice">Добавьте еду в дневник, чтобы получить персональные рекомендации по питанию!</p>
+    </div>
+
+    <div id="mealsListContainer"></div>
+  </section>
+
+  <!-- ЭКРАН 4: ВИТАМИНЫ И ДЕФИЦИТЫ -->
+  <section id="screen-vitamins" class="screen">
+    <div class="section-title" data-i18n="vitHeader">🍊 Справочник витаминов и дефицитов</div>
+    <div class="card">
+      <label style="font-size: 0.78rem; font-weight: 700; color: var(--muted);" data-i18n="vitSearchLbl">Введите продукт (например: апельсин, яйцо, лосось):</label>
+      <div style="display: flex; gap: 8px;">
+        <input type="text" id="vitFoodInput" placeholder="Апельсин" style="margin-bottom:0;" />
+        <button class="btn-main" style="width: auto; padding: 0 16px;" onclick="checkFoodVitamins()" data-i18n="vitCheckBtn">Найти</button>
+      </div>
+    </div>
+
+    <div id="vitaminResultCard" class="card hidden">
+      <div style="font-size: 1.6rem; margin-bottom: 4px;" id="vitResIcon">🍊</div>
+      <h3 style="color: var(--primary); font-size: 1.05rem; margin-bottom: 6px;" id="vitResTitle">Апельсин</h3>
+      <p style="font-size: 0.85rem; line-height: 1.6; color: var(--text);" id="vitResDesc"></p>
+    </div>
+
+    <!-- Основные дефициты и их влияние -->
+    <div class="section-title" data-i18n="mainDeficits">⚠️ Важные витамины и влияние дефицита:</div>
+    <div class="vitamin-card">
+      <strong>☀️ Витамин D (Солнечный витамин)</strong>
+      <p style="font-size: 0.82rem; color: var(--muted); margin-top: 3px;"><strong>Где брать:</strong> Больше гуляйте на солнце, ешьте жирную рыбу, яйца.<br><strong>Дефицит:</strong> Хроническая усталость, слабость в мышцах, частые простуды, ухудшение настроения.</p>
+    </div>
+    <div class="vitamin-card">
+      <strong>💧 Витамин C (Антиоксидант)</strong>
+      <p style="font-size: 0.82rem; color: var(--muted); margin-top: 3px;"><strong>Где брать:</strong> Цитрусовые, киви, болгарский перец, шиповник.<br><strong>Дефицит:</strong> Медленное заживление ран, уязвимость к инфекциям, сухость кожи.</p>
     </div>
   </section>
 
-  <!-- ЭКРАН 4: КАЛЬКУЛЯТОР КБЖУ -->
+  <!-- ЭКРАН 5: ТЕРМИН ДНЯ (С выученными) -->
+  <section id="screen-term" class="screen">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+      <div class="section-title" style="margin-bottom: 0;" data-i18n="termHeader">💡 Термины о питании</div>
+      <span style="font-size: 0.78rem; font-weight: 700; color: var(--primary);" id="learnedCount">Выучено: 0</span>
+    </div>
+    
+    <div class="card" style="background: linear-gradient(135deg, var(--card) 0%, var(--primary-soft) 100%);">
+      <div style="font-size: 2rem; margin-bottom: 6px;" id="termIcon">🧪</div>
+      <h3 style="color: var(--primary); font-size: 1.15rem; margin-bottom: 6px;" id="termTitle">Глутамат натрия (Е621)</h3>
+      <p style="font-size: 0.88rem; line-height: 1.6; color: var(--text); margin-bottom: 14px;" id="termDesc">Усилитель вкуса...</p>
+      <button class="btn-main" onclick="markTermLearned()" id="learnBtn" style="padding: 10px; font-size: 0.85rem;">✅ Отметить как выученное</button>
+    </div>
+
+    <div class="section-title" data-i18n="learnedListTitle">🎓 Выученные термины:</div>
+    <div id="learnedListContainer"></div>
+  </section>
+
+  <!-- ЭКРАН 6: КАЛЬКУЛЯТОР КБЖУ -->
   <section id="screen-calc" class="screen">
     <div class="card">
       <div class="section-title" data-i18n="calcHeader">📊 Калькулятор суточной нормы КБЖУ</div>
       
       <div class="calc-row">
         <div>
-          <label style="font-size: 0.78rem; font-weight: 700; color: var(--muted);" data-i18n="weightLbl">Вес (кг)</label>
-          <input type="number" id="calcWeight" placeholder="60" value="60" />
+          <label style="font-size: 0.75rem; font-weight: 700; color: var(--muted);" data-i18n="weightLbl">Вес (кг)</label>
+          <input type="number" id="calcWeight" value="60" />
         </div>
         <div>
-          <label style="font-size: 0.78rem; font-weight: 700; color: var(--muted);" data-i18n="heightLbl">Рост (см)</label>
-          <input type="number" id="calcHeight" placeholder="170" value="170" />
+          <label style="font-size: 0.75rem; font-weight: 700; color: var(--muted);" data-i18n="heightLbl">Рост (см)</label>
+          <input type="number" id="calcHeight" value="170" />
         </div>
       </div>
 
       <div class="calc-row">
         <div>
-          <label style="font-size: 0.78rem; font-weight: 700; color: var(--muted);" data-i18n="ageLbl">Возраст</label>
-          <input type="number" id="calcAge" placeholder="16" value="16" />
+          <label style="font-size: 0.75rem; font-weight: 700; color: var(--muted);" data-i18n="ageLbl">Возраст</label>
+          <input type="number" id="calcAge" value="16" />
         </div>
         <div>
-          <label style="font-size: 0.78rem; font-weight: 700; color: var(--muted);" data-i18n="activityLbl">Активность</label>
-          <select id="calcActivity" style="width:100%; padding:12px; border:1.5px solid var(--border); border-radius:12px; background:var(--card); color:var(--text); font-size:0.9rem; outline:none; margin-bottom:12px;">
+          <label style="font-size: 0.75rem; font-weight: 700; color: var(--muted);" data-i18n="activityLbl">Активность</label>
+          <select id="calcActivity">
             <option value="1.2" data-i18n="act1">Минимальная</option>
             <option value="1.375" selected data-i18n="act2">Умеренная</option>
             <option value="1.55" data-i18n="act3">Активная</option>
@@ -851,7 +950,7 @@
 
     <div id="calcResultCard" class="card hidden" style="text-align: center;">
       <div class="section-title" data-i18n="calcResTitle">✨ Ваша суточная норма:</div>
-      <div style="font-size: 2rem; font-weight: 800; color: var(--primary); margin-bottom: 12px;" id="resDailyCal">0 ккал</div>
+      <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 10px;" id="resDailyCal">0 ккал</div>
       <div class="macros-strip">
         <div><span>Белки</span><strong id="resDailyProt">0 г</strong></div>
         <div><span>Жиры</span><strong id="resDailyFat">0 г</strong></div>
@@ -860,20 +959,20 @@
     </div>
   </section>
 
-  <!-- ЭКРАН 5: ИЗБРАННОЕ -->
+  <!-- ЭКРАН 7: ИЗБРАННОЕ -->
   <section id="screen-fav" class="screen">
     <div class="section-title" data-i18n="favTitle">⭐ Избранные продукты</div>
     <div id="favoritesContainer"></div>
   </section>
 
-  <!-- ЭКРАН 6: ИИ-ПОМОЩНИК -->
+  <!-- ЭКРАН 8: ИИ-ПОМОЩНИК -->
   <section id="screen-ai" class="screen">
     <div class="card chat-box">
-      <div class="section-title" style="border-bottom: 1px solid var(--border); padding-bottom: 10px;">
+      <div class="section-title" style="border-bottom: 1px solid var(--border); padding-bottom: 8px;">
         🤖 <span data-i18n="aiTitle">ИИ-консультант по питанию</span>
       </div>
       <div class="chat-messages" id="chatMessages">
-        <div class="msg bot" data-i18n="aiHello">Привет! Я твой ИИ-помощник LabelDecoder. Спроси меня про любой продукт, сахар или Халяль!</div>
+        <div class="msg bot" data-i18n="aiHello">Привет! Я твой ИИ-помощник LabelDecoder. Спроси меня про витамины, КБЖУ или Халяль!</div>
       </div>
       <div class="chat-input-bar">
         <input type="text" id="chatInput" placeholder="Напишите вопрос..." onkeypress="if(event.key==='Enter') sendChat()" />
@@ -882,11 +981,11 @@
     </div>
   </section>
 
-  <!-- ЭКРАН 7: ИСТОРИЯ -->
+  <!-- ЭКРАН 9: ИСТОРИЯ -->
   <section id="screen-history" class="screen">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
       <div class="section-title" style="margin-bottom: 0;" data-i18n="histTitle">🕒 Недавние проверки</div>
-      <button onclick="clearHistory()" style="background: none; border: none; color: var(--primary); font-size: 0.78rem; font-weight: 700; cursor: pointer;" data-i18n="clearHistBtn">Очистить всё</button>
+      <button onclick="clearHistory()" style="background: none; border: none; color: var(--primary); font-size: 0.75rem; font-weight: 700; cursor: pointer;" data-i18n="clearHistBtn">Очистить всё</button>
     </div>
     <div id="historyContainer"></div>
   </section>
@@ -899,6 +998,14 @@
     <button class="nav-btn" id="tab-scanner" onclick="switchTab('scanner')">
       <span class="nav-icon">🔍</span>
       <span data-i18n="navScan">Сканер</span>
+    </button>
+    <button class="nav-btn" id="tab-meals" onclick="switchTab('meals')">
+      <span class="nav-icon">🍽️</span>
+      <span data-i18n="navMeals">Меню</span>
+    </button>
+    <button class="nav-btn" id="tab-vitamins" onclick="switchTab('vitamins')">
+      <span class="nav-icon">🍊</span>
+      <span data-i18n="navVit">Витамины</span>
     </button>
     <button class="nav-btn" id="tab-term" onclick="switchTab('term')">
       <span class="nav-icon">💡</span>
@@ -926,10 +1033,11 @@
   let lastScore = 100;
   let lastVerdictText = "";
   let userName = localStorage.getItem("ld_user_name") || "";
+  let currentTermIndex = 0;
 
   const I18N = {
     ru: {
-      heroSub: "Проверка Халяль, скрытый сахар, КБЖУ, расшифровка химии и умные замены",
+      heroSub: "Проверка Халяль, скрытый сахар, КБЖУ, витамины и умные замены",
       heroBtn: "Проверить продукт",
       statScans: "Проверено товаров",
       statFavsCount: "В избранном",
@@ -947,7 +1055,7 @@
       goalMass: "💪 Набор",
       goalKids: "👶 Детское",
       uploadBtn: "Загрузить фото этикетки / штрих-кода",
-      uploadHint: "Автораспознавание состава с упаковки",
+      uploadHint: "Автораспознавание с упаковки",
       analyzeBtn: "Проверить состав",
       calLbl: "Калории",
       protLbl: "Белки",
@@ -958,7 +1066,7 @@
       altTitle: "💡 Чем лучше заменить:",
       voiceBtn: "Озвучить результат голосом",
       aiTitle: "ИИ-консультант по питанию",
-      aiHello: "Привет! Я твой ИИ-помощник LabelDecoder. Спроси меня про любой продукт, сахар или Халяль!",
+      aiHello: "Привет! Я твой ИИ-помощник LabelDecoder. Спроси меня про витамины, КБЖУ или Халяль!",
       favTitle: "⭐ Избранные продукты",
       histTitle: "🕒 Недавние проверки",
       clearHistBtn: "Очистить всё",
@@ -972,10 +1080,26 @@
       act3: "Активная",
       calcBtn: "Рассчитать норму",
       calcResTitle: "✨ Ваша суточная норма:",
-      termHeader: "💡 Термин дня о питании",
-      termFooter: "Каждый день в приложении открывается новый полезный факт!",
+      mealHeader: "🍽️ Дневник питания и советы",
+      mealTypeLbl: "Прием пищи",
+      mealFoodLbl: "Что вы съели?",
+      mealCalLbl: "Калории (ккал) и Белки (г)",
+      mealAddBtn: "Добавить в дневник",
+      daySummary: "📊 Итоги за сегодня:",
+      mBreakfast: "🥣 Завтрак",
+      mLunch: "🍲 Обед",
+      mDinner: "🥗 Ужин",
+      mSnack: "🍎 Перекус",
+      vitHeader: "🍊 Справочник витаминов",
+      vitSearchLbl: "Введите продукт (например: апельсин, яйцо):",
+      vitCheckBtn: "Найти",
+      mainDeficits: "⚠️ Важные витамины и дефициты:",
+      termHeader: "💡 Термины о питании",
+      learnedListTitle: "🎓 Выученные термины:",
       navHome: "Главная",
       navScan: "Сканер",
+      navMeals: "Меню",
+      navVit: "Витамины",
       navTerm: "Термин",
       navCalc: "КБЖУ",
       navFav: "Избранное",
@@ -989,7 +1113,7 @@
       welBtn: "Начать работу"
     },
     kz: {
-      heroSub: "Халяль тексеру, жасырын қант, КБЖУ, химияны талдау және пайдалы баламалар",
+      heroSub: "Халяль тексеру, жасырын қант, КБЖУ, витаминдер және баламалар",
       heroBtn: "Өнімді тексеру",
       statScans: "Тексерілген өнімдер",
       statFavsCount: "Таңдаулыда",
@@ -1018,11 +1142,11 @@
       altTitle: "💡 Немен алмастырған дұрыс:",
       voiceBtn: "Нәтижені дауыстап оқу",
       aiTitle: "Тамақтану бойынша ИИ-кеңесші",
-      aiHello: "Сәлем! Мен сенің LabelDecoder ИИ-көмекшіңмін. Кез келген өнім, қант немесе Халяль туралы сұра!",
+      aiHello: "Сәлем! Мен сенің LabelDecoder ИИ-көмекшіңмін.",
       favTitle: "⭐ Таңдаулы өнімдер",
       histTitle: "🕒 Соңғы тексерулер",
       clearHistBtn: "Барлығын тазарту",
-      calcHeader: "📊 КБЖУ тәуліктік норма калькуляторы",
+      calcHeader: "📊 КБЖУ калькуляторы",
       weightLbl: "Салмақ (кг)",
       heightLbl: "Бой (см)",
       ageLbl: "Жасы",
@@ -1031,11 +1155,27 @@
       act2: "Орташа",
       act3: "Белсенді",
       calcBtn: "Норманы есептеу",
-      calcResTitle: "✨ Сіздің тәуліктік нормаңыз:",
-      termHeader: "💡 Күн термині",
-      termFooter: "Күн сайын жаңа пайдалы фактілер!",
-      navHome: "Басты бет",
+      calcResTitle: "✨ Сіздің нормаңыз:",
+      mealHeader: "🍽️ Тамақтану күнделігі",
+      mealTypeLbl: "Тамақ түрі",
+      mealFoodLbl: "Не жедіңіз?",
+      mealCalLbl: "Калория және Ақуыз",
+      mealAddBtn: "Қосу",
+      daySummary: "📊 Бүгінгі қорытынды:",
+      mBreakfast: "🥣 Таңғы ас",
+      mLunch: "🍲 Түскі ас",
+      mDinner: "🥗 Кешкі ас",
+      mSnack: "🍎 Жеңіл ас",
+      vitHeader: "🍊 Витаминдер анықтамасы",
+      vitSearchLbl: "Өнімді енгізіңіз (мысалы: апельсин):",
+      vitCheckBtn: "Іздеу",
+      mainDeficits: "⚠️ Маңызды витаминдер мен тапшылық:",
+      termHeader: "💡 Терминдер",
+      learnedListTitle: "🎓 Жастелген терминдер:",
+      navHome: "Басты",
       navScan: "Сканер",
+      navMeals: "Меню",
+      navVit: "Витамин",
       navTerm: "Термин",
       navCalc: "КБЖУ",
       navFav: "Таңдаулы",
@@ -1043,13 +1183,13 @@
       vClean: "Тамаша таза құрам!",
       vWarn: "Күмәнді қоспалар бар",
       vDanger: "Қант пен химия өте көп",
-      altDefault: "Қантсыз және пальма майынсыз өнімдерді таңдаңыз.",
+      altDefault: "Қантсыз өнімдерді таңдаңыз.",
       welTitle: "LabelDecoder қосымшасына қош келдіңіз!",
       welSub: "Сізге қалай кайрылайық?",
-      welBtn: "Жұмысты бастау"
+      welBtn: "Бастау"
     },
     en: {
-      heroSub: "Halal check, hidden sugar, calories, chemistry breakdown & smart swaps",
+      heroSub: "Halal check, hidden sugar, calories, vitamins & smart swaps",
       heroBtn: "Scan Product",
       statScans: "Products Scanned",
       statFavsCount: "Favorites",
@@ -1092,10 +1232,26 @@
       act3: "Active",
       calcBtn: "Calculate",
       calcResTitle: "✨ Your daily target:",
-      termHeader: "💡 Term of the day",
-      termFooter: "New nutrition fact every day!",
+      mealHeader: "🍽️ Meal Tracker & Advice",
+      mealTypeLbl: "Meal type",
+      mealFoodLbl: "What did you eat?",
+      mealCalLbl: "Calories & Protein (g)",
+      mealAddBtn: "Add to diary",
+      daySummary: "📊 Today Summary:",
+      mBreakfast: "🥣 Breakfast",
+      mLunch: "🍲 Lunch",
+      mDinner: "🥗 Dinner",
+      mSnack: "🍎 Snack",
+      vitHeader: "🍊 Vitamin Guide",
+      vitSearchLbl: "Enter food (e.g. orange, egg):",
+      vitCheckBtn: "Search",
+      mainDeficits: "⚠️ Important Vitamins & Deficits:",
+      termHeader: "💡 Nutrition Terms",
+      learnedListTitle: "🎓 Learned Terms:",
       navHome: "Home",
       navScan: "Scanner",
+      navMeals: "Meals",
+      navVit: "Vitamins",
       navTerm: "Term",
       navCalc: "Macros",
       navFav: "Favorites",
@@ -1111,104 +1267,178 @@
   };
 
   const TERMS_DB = [
-    { icon: "🧪", ru: { title: "Глутамат натрия (Е621)", desc: "Усилитель вкуса, который обманывает рецепторы языка и заставляет съесть больше нормы." }, kz: { title: "Натрий глутаматы (Е621)", desc: "Тіл рецепторларын алдап, өнімді көп жеуге итермелейтін дәм күшейткіш." }, en: { title: "Monosodium Glutamate (E621)", desc: "Flavor enhancer that stimulates tongue receptors." } },
-    { icon: "🌾", ru: { title: "Мальтодекстрин", desc: "Быстрый углевод из крахмала. Повышает сахар в крови быстрее, чем обычный сахар." }, kz: { title: "Мальтодекстрин", desc: "Крахмаздан алынатын жылдам көмірсу. Қандағы қантты өте тез көтереді." }, en: { title: "Maltodextrin", desc: "A fast carbohydrate that spikes blood sugar quickly." } },
-    { icon: "🌿", ru: { title: "Кармин (Е120)", desc: "Красный краситель животного происхождения, получаемый из насекомых. Требует проверки на Халяль." }, kz: { title: "Кармин (Е120)", desc: "Жәндіктерден алынатын қызыл бояғыш. Халяль күйін тексеруді талап етеді." }, en: { title: "Carmine (E120)", desc: "Red dye derived from insects. Requires Halal check." } },
-    { icon: "🍯", ru: { title: "Глюкозный сироп", desc: "Дешевый жидкий сахар, который добавляют в сладости для продления срока годности." }, kz: { title: "Глюкоза сиропы", desc: "Тәттілердің сақтау мерзімін ұзарту үшін қосылатын арзан сұйық қант." }, en: { title: "Glucose Syrup", desc: "Inexpensive liquid sugar used to extend shelf life." } }
+    { icon: "🧪", ru: { title: "Глутамат натрия (Е621)", desc: "Усилитель вкуса, который стимулирует рецепторы языка и вызывает переедание." }, kz: { title: "Натрий глутаматы (Е621)", desc: "Дәм күшейткіш." }, en: { title: "MSG (E621)", desc: "Flavor enhancer." } },
+    { icon: "🌾", ru: { title: "Мальтодекстрин", desc: "Быстрый углевод из крахмала. Повышает сахар в крови быстрее сахара." }, kz: { title: "Мальтодекстрин", desc: "Жылдам көмірсу." }, en: { title: "Maltodextrin", desc: "Fast carb." } },
+    { icon: "🌿", ru: { title: "Кармин (Е120)", desc: "Красный краситель из насекомых. Требует проверки на Халяль." }, kz: { title: "Кармин (Е120)", desc: "Қызыл бояғыш." }, en: { title: "Carmine (E120)", desc: "Red dye." } },
+    { icon: "🍯", ru: { title: "Глюкозный сироп", desc: "Дешевый жидкий сахар в сладостях." }, kz: { title: "Глюкоза сиропы", desc: "Сұйық қант." }, en: { title: "Glucose Syrup", desc: "Liquid sugar." } }
   ];
 
+  const FOOD_VITAMINS_DB = {
+    апельсин: { icon: "🍊", text: "Богат витамином C (около 70 мг на 100г) и клетчаткой. Укрепляет иммунитет и улучшает кожу." },
+    orange: { icon: "🍊", text: "Rich in Vitamin C (~70mg per 100g) and fiber. Boosts immunity." },
+    айран: { icon: "🥛", text: "Содержит кальций, витамины группы B и пробиотики для микрофлоры кишечника." },
+    яйцо: { icon: "🥚", text: "Источник холина, витамина D, B12 и качественного белка для мышц." },
+    egg: { icon: "🥚", text: "Source of choline, Vitamin D, B12 and high-quality protein." },
+    лосось: { icon: "🐟", text: "Лидер по содержанию Омега-3 жирных кислот и витамина D. Полезен для сердца и мозга." },
+    salmon: { icon: "🐟", text: "High in Omega-3 fatty acids and Vitamin D. Great for heart and brain." }
+  };
+
+  // Стрик активности
+  function updateStreak() {
+    let lastDate = localStorage.getItem("ld_streak_date");
+    let streak = parseInt(localStorage.getItem("ld_streak_count") || "1");
+    let today = new Date().toDateString();
+
+    if (lastDate !== today) {
+      if (lastDate) {
+        let prev = new Date(lastDate);
+        let now = new Date();
+        let diffTime = Math.abs(now - prev);
+        let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        if (diffDays === 2) {
+          streak += 1;
+        } else if (diffDays > 2) {
+          streak = 1;
+        }
+      }
+      localStorage.setItem("ld_streak_date", today);
+      localStorage.setItem("ld_streak_count", streak);
+    }
+    document.getElementById("streakBadge").textContent = `🔥 Стрик: ${streak} дн.`;
+  }
+
+  // Загрузка термина дня
   function loadTermOfDay() {
-    const dayIndex = new Date().getDate() % TERMS_DB.length;
-    const term = TERMS_DB[dayIndex];
+    const term = TERMS_DB[currentTermIndex];
     const loc = term[currentLang] || term.ru;
     document.getElementById("termIcon").textContent = term.icon;
     document.getElementById("termTitle").textContent = loc.title;
     document.getElementById("termDesc").textContent = loc.desc;
+
+    let learned = JSON.parse(localStorage.getItem("ld_learned_terms") || "[]");
+    const isLearned = learned.some(t => t.title === loc.title);
+    const btn = document.getElementById("learnBtn");
+    if (isLearned) {
+      btn.textContent = "✅ Выучено";
+      btn.style.opacity = "0.7";
+    } else {
+      btn.textContent = currentLang === "kz" ? "✅ Естедім деп белгілеу" : currentLang === "en" ? "✅ Mark as Learned" : "✅ Отметить как выученное";
+      btn.style.opacity = "1";
+    }
+    renderLearnedTerms();
   }
 
-  const PRODUCTS_DB = {
-    chips: {
-      match: /(чипсы|lays|лейс|лэйс|фэйс|pringles)/i,
-      cal: "520 ккал", p: "5.5 г", f: "32 г", c: "53 г",
-      ru: "Картофель, растительные масла (подсолнечное, пальмовое), ароматизатор (соль, мальтодекстрин, усилитель вкуса глутамат натрия Е621, сахар, краситель экстракт паприки).",
-      kz: "Картоп, өсімдік майлары (күнбағыс, пальма майы), хош иістендіргіш (тұз, мальтодекстрин, дәм күшейткіш натрий глутаматы Е621, қант, бояғыш).",
-      en: "Potatoes, vegetable oils (sunflower, palm oil), seasoning (salt, maltodextrin, flavor enhancer monosodium glutamate E621, sugar, paprika extract)."
-    },
-    jelly: {
-      match: /(мармелад|желейн|haribo|харибо)/i,
-      cal: "340 ккал", p: "6.5 г", f: "0.1 г", c: "77 г",
-      ru: "Сироп глюкозы, сахар, желатин свиной, декстроза, лимонная кислота, ароматизаторы, краситель Е124.",
-      kz: "Глюкоза сиропы, қант, шошқа желатині, декстроза, лимон қышқылы, хош иістендіргіштер, бояғыш Е124.",
-      en: "Glucose syrup, sugar, pork gelatin, dextrose, citric acid, flavorings, color E124."
-    },
-    bar: {
-      match: /(шоколад|батончик|сникерс|snickers|марс|mars|твикс|twix)/i,
-      cal: "485 ккал", p: "8.5 г", f: "24 г", c: "60 г",
-      ru: "Сахар, глюкозный сироп, арахис, сухое молоко, пальмовое масло, лактоза, эмульгатор соевый лецитин, ванилин.",
-      kz: "Қант, глюкоза сиропы, жержаңғақ, құрғақ сүт, пальма майы, лактоза, эмульгатор соя лецитині, ванилин.",
-      en: "Sugar, glucose syrup, peanuts, milk powder, palm oil, lactose, soy lecithin emulsifier, vanillin."
-    },
-    clean: {
-      match: /(хумус|нут|hummus)/i,
-      cal: "166 ккал", p: "7.9 г", f: "9.6 г", c: "14.3 г",
-      ru: "Нут отварной, вода питьевая, паста кунжутная (тахини), масло оливковое первого отжима, сок лимонный, чеснок, соль морская.",
-      kz: "Пісірілген ноқат, ауыз су, күнжіт пастасы (тахини), зәйтүн майы, лимон шырыны, сарымсақ, теңіз тұзы.",
-      en: "Cooked chickpeas, water, sesame paste (tahini), extra virgin olive oil, lemon juice, garlic, sea salt."
+  function markTermLearned() {
+    const term = TERMS_DB[currentTermIndex];
+    const loc = term[currentLang] || term.ru;
+    let learned = JSON.parse(localStorage.getItem("ld_learned_terms") || "[]");
+    if (!learned.some(t => t.title === loc.title)) {
+      learned.push(loc);
+      localStorage.setItem("ld_learned_terms", JSON.stringify(learned));
     }
-  };
+    loadTermOfDay();
+  }
 
-  const RULES = [
-    {
-      pattern: /\b(желатин свиной|свиной жир|кармин|е120|алкоголь|спирт|pork|gelatin pork|carmine)\b/gi,
-      penalty: 50, level: "danger", haram: true,
-      ru: { name: "Свиной желатин / Кармин / Спирт", desc: "Запрещенный компонент (Харам). Не подходит для халяльного питания." },
-      kz: { name: "Шошқа желатині / Кармин / Спирт", desc: "Тыйым салынған компонент (Харам)." },
-      en: { name: "Pork Gelatin / Carmine / Alcohol", desc: "Forbidden component (Haram)." }
-    },
-    {
-      pattern: /\b(желатин|сычужный фермент|gelatin|rennet)\b/gi,
-      penalty: 15, level: "warning", doubt: true,
-      ru: { name: "Желатин (неуточненный)", desc: "Статус Машбух (сомнительно) — нужно уточнить, растительный он или говяжий." },
-      kz: { name: "Желатин (тегі белгісіз)", desc: "Мәшбүх (күмәнді) — өсімдік немесе сиыр тектес екенін тексеріңіз." },
-      en: { name: "Gelatin (unspecified)", desc: "Mashbooh (doubtful) — verify if plant or halal beef derived." }
-    },
-    {
-      pattern: /\b(сахар[а-я]*|қант[а-я]*|sugar)\b/gi,
-      penalty: 18, level: "danger",
-      ru: { name: "Сахар (Сахароза)", desc: "Быстрый углевод, вызывающий резкий скачок глюкозы и инсулина." },
-      kz: { name: "Қант (Сахароза)", desc: "Қандағы қант деңгейін күрт көтеретін жылдам көмірсу." },
-      en: { name: "Sugar (Sucrose)", desc: "Fast carbohydrate causing sharp blood glucose spikes." }
-    },
-    {
-      pattern: /\b(мальтодекстрин[а-я]*|сироп[а-я]*|паток[а-я]*|сірне[а-я]*|декстроз[а-я]*|maltodextrin|syrup|dextrose)\b/gi,
-      penalty: 18, level: "danger",
-      ru: { name: "Скрытый сахар (Мальтодекстрин / Сироп)", desc: "Повышает сахар в крови даже быстрее обычного сахара." },
-      kz: { name: "Жасырын қант (Мальтодекстрин / Сироп)", desc: "Қандағы қантты қарапайым қанттан да тез көтереді." },
-      en: { name: "Hidden Sugar (Maltodextrin / Syrup)", desc: "Spikes blood sugar even faster than table sugar." }
-    },
-    {
-      pattern: /\b(пальмов[а-я]* масл[а-я]*|пальма май[а-я]*|маргарин|гидрогенизированн[а-я]*|palm oil|hydrogenated)\b/gi,
-      penalty: 22, level: "danger",
-      ru: { name: "Пальмовое масло / Трансжиры", desc: "Дешевый промышленный жир, повышающий холестерин." },
-      kz: { name: "Пальма майы / Трансмайлар", desc: "Холестеринді арттыратын арзан өнеркәсіптік май." },
-      en: { name: "Palm Oil / Hydrogenated Fats", desc: "Industrial fats linked to higher cholesterol." }
-    },
-    {
-      pattern: /\b(глутамат натрия|натрий глутаматы|е\s?621|e\s?621|усилител[а-я]* вкуса|monosodium glutamate|msg)\b/gi,
-      penalty: 15, level: "warning",
-      ru: { name: "Глутамат натрия (Е621)", desc: "Усилитель вкуса, который заставляет съесть больше нормы." },
-      kz: { name: "Натрий глутаматы (Е621)", desc: "Артық тамақтануға итермелейтін дәм күшейткіш." },
-      en: { name: "Monosodium Glutamate (E621)", desc: "Flavor enhancer that encourages overeating." }
-    },
-    {
-      pattern: /\b(е\s?124|e\s?124|е\s?202|е\s?211|красител[а-я]*|бояғыш[а-я]*|color|dye)\b/gi,
-      penalty: 10, level: "warning",
-      ru: { name: "Синтетические красители / Консерванты", desc: "Искусственные добавки без пользы для организма." },
-      kz: { name: "Синтетикалық бояғыштар / Консерванттар", desc: "Ағзаға пайдасы жоқ жасанды қоспалар." },
-      en: { name: "Synthetic Dyes / Preservatives", desc: "Artificial additives with zero nutritional value." }
+  function renderLearnedTerms() {
+    let learned = JSON.parse(localStorage.getItem("ld_learned_terms") || "[]");
+    document.getElementById("learnedCount").textContent = `${currentLang === "kz" ? "Жатталды" : currentLang === "en" ? "Learned" : "Выучено"}: ${learned.length}`;
+    const container = document.getElementById("learnedListContainer");
+    if (!learned.length) {
+      container.innerHTML = `<div class="card" style="text-align:center; color:var(--muted); font-size:0.85rem;" data-i18n="noLearned">Пока нет выученных терминов</div>`;
+      return;
     }
-  ];
+    container.innerHTML = learned.map((item, idx) => `
+      <div class="card" style="padding:12px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <strong style="font-size:0.88rem; color:var(--primary);">${item.title}</strong>
+          <div style="font-size:0.75rem; color:var(--muted); margin-top:2px;">${item.desc}</div>
+        </div>
+        <button onclick="removeLearnedTerm(${idx})" style="background:none; border:none; color:var(--danger-text); cursor:pointer; font-size:1rem;">✕</button>
+      </div>
+    `).join("");
+  }
 
+  function removeLearnedTerm(idx) {
+    let learned = JSON.parse(localStorage.getItem("ld_learned_terms") || "[]");
+    learned.splice(idx, 1);
+    localStorage.setItem("ld_learned_terms", JSON.stringify(learned));
+    loadTermOfDay();
+  }
+
+  // Трекер питания
+  function addMealItem() {
+    const type = document.getElementById("mealType").value;
+    const food = document.getElementById("mealInput").value.trim();
+    const cal = parseInt(document.getElementById("mealCal").value) || 0;
+    const prot = parseInt(document.getElementById("mealProt").value) || 0;
+    if (!food) return;
+
+    let meals = JSON.parse(localStorage.getItem("ld_meals") || "[]");
+    meals.unshift({ type, food, cal, prot });
+    localStorage.setItem("ld_meals", JSON.stringify(meals));
+    document.getElementById("mealInput").value = "";
+    renderMeals();
+  }
+
+  function renderMeals() {
+    let meals = JSON.parse(localStorage.getItem("ld_meals") || "[]");
+    const container = document.getElementById("mealsListContainer");
+    let totalCal = meals.reduce((sum, m) => sum + m.cal, 0);
+    let totalProt = meals.reduce((sum, m) => sum + m.prot, 0);
+
+    document.getElementById("totalDayCal").textContent = `${totalCal} / 2000 ккал`;
+    
+    const advice = document.getElementById("mealAiAdvice");
+    if (totalProt < 60) {
+      advice.innerHTML = currentLang === "kz" ? "⚠️ Бүгін ақуыз (белок) аз қабылданды! Рационға тауық еті, жұмыртқа немесе сүт өнімдерін қосыңыз." : currentLang === "en" ? "⚠️ Low protein intake today! Add chicken breast, eggs or dairy to your diet." : "⚠️ <strong>Совет диетолога:</strong> Сегодня маловато белка! Рекомендуем добавить на ужин куриную грудку, рыбу или творог.";
+    } else {
+      advice.innerHTML = currentLang === "kz" ? "✅ Керемет! Ақуыз мөлшері қалыпты деңгейде." : currentLang === "en" ? "✅ Great job! Protein intake is on track." : "✅ <strong>Отлично!</strong> Норма белка за день соблюдается отлично.";
+    }
+
+    if (!meals.length) {
+      container.innerHTML = `<div class="card" style="text-align:center; color:var(--muted); font-size:0.85rem;" data-i18n="noMeals">Сегодня вы еще ничего не записали в дневник</div>`;
+      return;
+    }
+
+    container.innerHTML = meals.map((m, idx) => `
+      <div class="meal-card">
+        <div>
+          <span style="font-size:0.7rem; font-weight:800; color:var(--primary); text-transform:uppercase;">${m.type}</span>
+          <div style="font-weight:700; font-size:0.88rem; margin-top:2px;">${m.food}</div>
+          <div style="font-size:0.72rem; color:var(--muted); margin-top:2px;">${m.cal} ккал | ${m.prot} г белка</div>
+        </div>
+        <button onclick="deleteMeal(${idx})" style="background:none; border:none; color:var(--danger-text); cursor:pointer; font-size:1rem;">✕</button>
+      </div>
+    `).join("");
+  }
+
+  function deleteMeal(idx) {
+    let meals = JSON.parse(localStorage.getItem("ld_meals") || "[]");
+    meals.splice(idx, 1);
+    localStorage.setItem("ld_meals", JSON.stringify(meals));
+    renderMeals();
+  }
+
+  // Проверка витаминов по продукту
+  function checkFoodVitamins() {
+    const q = document.getElementById("vitFoodInput").value.trim().toLowerCase();
+    const card = document.getElementById("vitaminResultCard");
+    if (!q) return;
+
+    let found = FOOD_VITAMINS_DB[q];
+    card.classList.remove("hidden");
+    if (found) {
+      document.getElementById("vitResIcon").textContent = found.icon;
+      document.getElementById("vitResTitle").textContent = q.toUpperCase();
+      document.getElementById("vitResDesc").textContent = found.text;
+    } else {
+      document.getElementById("vitResIcon").textContent = "🥗";
+      document.getElementById("vitResTitle").textContent = q;
+      document.getElementById("vitResDesc").textContent = currentLang === "kz" ? "Бұл өнім клетчаткаға, минералдарға және табиғи антиоксиданттарға бай." : currentLang === "en" ? "This product contains essential dietary fiber, minerals and natural antioxidants." : "Этот продукт богат клетчаткой, полезными микроэлементами и натуральными антиоксидантами для поддержки организма.";
+    }
+  }
+
+  // Базовые функции приложения
   if (!userName) {
     document.getElementById("welcomeOverlay").classList.remove("hidden");
   } else {
@@ -1243,6 +1473,7 @@
     if (tabName === "history") renderHistory();
     if (tabName === "fav") renderFavorites();
     if (tabName === "term") loadTermOfDay();
+    if (tabName === "meals") renderMeals();
   }
 
   function setGoal(goal) {
@@ -1280,6 +1511,7 @@
       applyLang();
       updateHeroGreeting();
       loadTermOfDay();
+      renderMeals();
     });
   });
 
@@ -1301,13 +1533,89 @@
   function handlePhotoUpload(event) {
     if (!event.target.files.length) return;
     const status = document.getElementById("photoStatus");
-    status.textContent = "⏳ Распознаём этикетку...";
+    status.textContent = "⏳ Распознаём...";
     setTimeout(() => {
-      status.textContent = "✅ Этикетка распознана!";
+      status.textContent = "✅ Распознано!";
       document.getElementById("ingredientsInput").value = PRODUCTS_DB.chips[currentLang];
       runAnalysis();
     }, 800);
   }
+
+  const PRODUCTS_DB = {
+    chips: {
+      match: /(чипсы|lays|лейс|лэйс|фэйс|pringles)/i,
+      cal: "520 ккал", p: "5.5 г", f: "32 г", c: "53 г",
+      ru: "Картофель, растительные масла (подсолнечное, пальмовое), ароматизатор (соль, мальтодекстрин, усилитель вкуса глутамат натрия Е621, сахар, краситель экстракт паприки).",
+      kz: "Картоп, өсімдік майлары (күнбағыс, пальма майы), хош иістендіргіш (тұз, мальтодекстрин, дәм күшейткіш натрий глутаматы Е621, қант, бояғыш).",
+      en: "Potatoes, vegetable oils (sunflower, palm oil), seasoning (salt, maltodextrin, flavor enhancer monosodium glutamate E621, sugar, paprika extract)."
+    },
+    jelly: {
+      match: /(мармелад|желейн|haribo|харибо)/i,
+      cal: "340 ккал", p: "6.5 г", f: "0.1 г", c: "77 г",
+      ru: "Сироп глюкозы, сахар, желатин свиной, декстроза, лимонная кислота, ароматизаторы, краситель Е124.",
+      kz: "Глюкоза сиропы, қант, шошқа желатині, декстроза, лимон қышқылы, хош иістендіргіштер, бояғыш Е124.",
+      en: "Glucose syrup, sugar, pork gelatin, dextrose, citric acid, flavorings, color E124."
+    },
+    bar: {
+      match: /(шоколад|батончик|сникерс|snickers|марс|mars|твикс|twix)/i,
+      cal: "485 ккал", p: "8.5 г", f: "24 г", c: "60 г",
+      ru: "Сахар, глюкозный сироп, арахис, сухое молоко, пальмовое масло, лактоза, эмульгатор соевый лецитин, ванилин.",
+      kz: "Қант, глюкоза сиропы, жержаңғақ, құрғақ сүт, пальма майы, лактоза, эмульгатор соя лецитині, ванилин.",
+      en: "Sugar, glucose syrup, peanuts, milk powder, palm oil, lactose, soy lecithin emulsifier, vanillin."
+    },
+    clean: {
+      match: /(хумус|нут|hummus)/i,
+      cal: "166 ккал", p: "7.9 г", f: "9.6 г", c: "14.3 г",
+      ru: "Нут отварной, вода питьевая, паста кунжутная (тахини), масло оливковое первого отжима, сок лимонный, чеснок, соль морская.",
+      kz: "Пісірілген ноқат, ауыз су, күнжіт пастасы (тахини), зәйтүн майы, лимон шырыны, сарымсақ, теңіз тұзы.",
+      en: "Cooked chickpeas, water, sesame paste (tahini), extra virgin olive oil, lemon juice, garlic, sea salt."
+    }
+  };
+
+  const RULES = [
+    {
+      pattern: /\b(желатин свиной|свиной жир|кармин|е120|алкоголь|спирт|pork|gelatin pork|carmine)\b/gi,
+      penalty: 50, level: "danger", haram: true,
+      ru: { name: "Свиной желатин / Кармин / Спирт", desc: "Запрещенный компонент (Харам)." },
+      kz: { name: "Шошқа желатині / Кармин / Спирт", desc: "Харам компонент." },
+      en: { name: "Pork Gelatin / Carmine / Alcohol", desc: "Haram component." }
+    },
+    {
+      pattern: /\b(желатин|сычужный фермент|gelatin|rennet)\b/gi,
+      penalty: 15, level: "warning", doubt: true,
+      ru: { name: "Желатин (неуточненный)", desc: "Статус Машбух (сомнительно)." },
+      kz: { name: "Желатин (тегі белгісіз)", desc: "Мәшбүх." },
+      en: { name: "Gelatin (unspecified)", desc: "Mashbooh." }
+    },
+    {
+      pattern: /\b(сахар[а-я]*|қант[а-я]*|sugar)\b/gi,
+      penalty: 18, level: "danger",
+      ru: { name: "Сахар (Сахароза)", desc: "Быстрый углевод." },
+      kz: { name: "Қант", desc: "Жылдам көмірсу." },
+      en: { name: "Sugar", desc: "Fast carb." }
+    },
+    {
+      pattern: /\b(мальтодекстрин[а-я]*|сироп[а-я]*|паток[а-я]*|сірне[а-я]*|декстроз[а-я]*|maltodextrin|syrup|dextrose)\b/gi,
+      penalty: 18, level: "danger",
+      ru: { name: "Скрытый сахар", desc: "Повышает глюкозу в крови." },
+      kz: { name: "Жасырын қант", desc: "Қантты тез көтереді." },
+      en: { name: "Hidden Sugar", desc: "Spikes blood sugar." }
+    },
+    {
+      pattern: /\b(пальмов[а-я]* масл[а-я]*|пальма май[а-я]*|маргарин|гидрогенизированн[а-я]*|palm oil|hydrogenated)\b/gi,
+      penalty: 22, level: "danger",
+      ru: { name: "Пальмовое масло / Трансжиры", desc: "Повышают холестерин." },
+      kz: { name: "Пальма майы", desc: "Зиянды майлар." },
+      en: { name: "Palm Oil", desc: "Bad fats." }
+    },
+    {
+      pattern: /\b(глутамат натрия|натрий глутаматы|е\s?621|e\s?621|усилител[а-я]* вкуса|monosodium glutamate|msg)\b/gi,
+      penalty: 15, level: "warning",
+      ru: { name: "Глутамат натрия (Е621)", desc: "Усилитель вкуса." },
+      kz: { name: "Натрий глутаматы (Е621)", desc: "Дәм күшейткіш." },
+      en: { name: "MSG (E621)", desc: "Flavor enhancer." }
+    }
+  ];
 
   function runAnalysis() {
     const dict = I18N[currentLang];
@@ -1336,9 +1644,7 @@
       if (rule.pattern.test(text)) {
         found.push(rule);
         let penalty = rule.penalty;
-        if (currentGoal === "kids" && (rule.level === "danger" || rule.level === "warning")) penalty += 8;
-        if (currentGoal === "slim" && rule.pattern.test(/сахар|сироп|патока|мальтодекстрин/i)) penalty += 10;
-        
+        if (currentGoal === "kids") penalty += 5;
         score -= penalty;
         if (rule.haram) isHaram = true;
         if (rule.doubt) isDoubt = true;
@@ -1356,17 +1662,11 @@
 
     const vTitle = document.getElementById("verdictTitle");
     if (score >= 80) {
-      ring.style.borderColor = "#10b981";
-      ring.style.color = "#10b981";
-      vTitle.textContent = dict.vClean;
+      ring.style.borderColor = "#10b981"; ring.style.color = "#10b981"; vTitle.textContent = dict.vClean;
     } else if (score >= 45) {
-      ring.style.borderColor = "#f59e0b";
-      ring.style.color = "#f59e0b";
-      vTitle.textContent = dict.vWarn;
+      ring.style.borderColor = "#f59e0b"; ring.style.color = "#f59e0b"; vTitle.textContent = dict.vWarn;
     } else {
-      ring.style.borderColor = "#e11d48";
-      ring.style.color = "#e11d48";
-      vTitle.textContent = dict.vDanger;
+      ring.style.borderColor = "#e11d48"; ring.style.color = "#e11d48"; vTitle.textContent = dict.vDanger;
     }
 
     lastVerdictText = vTitle.textContent;
@@ -1374,17 +1674,11 @@
 
     const hBadge = document.getElementById("halalBadge");
     if (isHaram) {
-      hBadge.style.background = "var(--danger-bg)";
-      hBadge.style.color = "var(--danger-text)";
-      hBadge.textContent = dict.halalNo;
+      hBadge.style.background = "var(--danger-bg)"; hBadge.style.color = "var(--danger-text)"; hBadge.textContent = "🔴 Харам";
     } else if (isDoubt) {
-      hBadge.style.background = "var(--warn-bg)";
-      hBadge.style.color = "var(--warn-text)";
-      hBadge.textContent = dict.halalDoubt;
+      hBadge.style.background = "var(--warn-bg)"; hBadge.style.color = "var(--warn-text)"; hBadge.textContent = "🟡 Машбух";
     } else {
-      hBadge.style.background = "var(--ok-bg)";
-      hBadge.style.color = "var(--ok-text)";
-      hBadge.textContent = dict.halalOk;
+      hBadge.style.background = "var(--ok-bg)"; hBadge.style.color = "var(--ok-text)"; hBadge.textContent = "🟢 Халяль";
     }
 
     if (matchedProd) {
@@ -1393,15 +1687,13 @@
       document.getElementById("resFat").textContent = matchedProd.f;
       document.getElementById("resCarb").textContent = matchedProd.c;
     } else {
-      document.getElementById("resCal").textContent = score < 50 ? "430 ккал" : "190 ккал";
-      document.getElementById("resProt").textContent = "5.0 г";
-      document.getElementById("resFat").textContent = score < 50 ? "22 г" : "6 г";
-      document.getElementById("resCarb").textContent = score < 50 ? "54 г" : "24 г";
+      document.getElementById("resCal").textContent = "250 ккал";
+      document.getElementById("resProt").textContent = "6 г";
+      document.getElementById("resFat").textContent = "10 г";
+      document.getElementById("resCarb").textContent = "30 г";
     }
 
-    renderGoalAdvice(score, text);
     document.getElementById("highlightedText").innerHTML = html;
-
     const chemBlock = document.getElementById("chemBlock");
     const chemList = document.getElementById("chemList");
     chemList.innerHTML = "";
@@ -1410,7 +1702,7 @@
     } else {
       chemBlock.classList.remove("hidden");
       found.forEach(item => {
-        const loc = item[currentLang];
+        const loc = item[currentLang] || item.ru;
         const div = document.createElement("div");
         div.className = "chem-item " + item.level;
         div.innerHTML = `<strong>${loc.name}</strong><div style="color:var(--muted); margin-top:2px;">${loc.desc}</div>`;
@@ -1418,44 +1710,8 @@
       });
     }
 
-    const lower = text.toLowerCase();
-    let alt = dict.altDefault;
-    if (score >= 80) alt = dict.altClean;
-    else if (/чипсы|картоф|картоп|potato/.test(lower)) alt = dict.altSnack;
-    else if (/сахар|қант|шоколад|мармелад|sugar/.test(lower)) alt = dict.altSweet;
-    document.getElementById("altText").textContent = alt;
-
+    document.getElementById("altText").textContent = dict.altDefault;
     saveHistory(text, score);
-  }
-
-  function renderGoalAdvice(score, text) {
-    const adviceTitle = document.getElementById("goalAdviceTitle");
-    const adviceText = document.getElementById("goalAdviceText");
-
-    if (currentGoal === "slim") {
-      adviceTitle.textContent = currentLang === "kz" ? "🎯 Салмақ тастау мақсаты үшін:" : currentLang === "en" ? "🎯 For Weight Loss Goal:" : "🎯 Вердикт для цели «Похудение»:";
-      if (score >= 80) {
-        adviceText.textContent = currentLang === "kz" ? "✅ Диета кезінде қауіпсіз жеуге болады." : currentLang === "en" ? "✅ Safe to consume during weight-loss." : "✅ Отличный выбор! Можно смело есть при похудении.";
-      } else if (score >= 45) {
-        adviceText.textContent = currentLang === "kz" ? "⚠️ Аз мөлшерде жеуге болады." : currentLang === "en" ? "⚠️ Consume in moderation." : "⚠️ Употребляйте в умеренных количествах.";
-      } else {
-        adviceText.textContent = currentLang === "kz" ? "❌ Салмақ тастау кезінде мұны жеуге БОЛМАЙДЫ!" : currentLang === "en" ? "❌ Avoid during weight loss!" : "❌ Категорически не рекомендуется при похудении!";
-      }
-    } else if (currentGoal === "mass") {
-      adviceTitle.textContent = currentLang === "kz" ? "🎯 Салмақ қосу мақсаты үшін:" : currentLang === "en" ? "🎯 For Muscle Gain Goal:" : "🎯 Вердикт для цели «Набор массы»:";
-      if (score >= 70) {
-        adviceText.textContent = currentLang === "kz" ? "✅ Бұлшықет өсуіне пайдалы калориялар!" : currentLang === "en" ? "✅ Good energy for muscle gain!" : "✅ Подходит для набора массы!";
-      } else {
-        adviceText.textContent = currentLang === "kz" ? "⚠️ Сапасыз калориялар, май жиналуы мүмкін." : currentLang === "en" ? "⚠️ Dirty calories, may increase fat." : "⚠️ Из-за химии вырастет в основном жировая прослойка.";
-      }
-    } else {
-      adviceTitle.textContent = currentLang === "kz" ? "🎯 Балалар тағамы үшін:" : currentLang === "en" ? "🎯 For Kids Nutrition Goal:" : "🎯 Вердикт для цели «Детское питание»:";
-      if (score >= 80) {
-        adviceText.textContent = currentLang === "kz" ? "✅ Балаларға қауіпсіз." : currentLang === "en" ? "✅ Safe for children." : "✅ Безопасно для детей.";
-      } else {
-        adviceText.textContent = currentLang === "kz" ? "❌ Балаларға беруге КЕҢЕС БЕРІЛМЕЙДІ." : currentLang === "en" ? "❌ Not recommended for kids." : "❌ Не рекомендуется давать детям!";
-      }
-    }
   }
 
   function calculateMacros() {
@@ -1467,27 +1723,21 @@
     let bmr = (10 * w) + (6.25 * h) - (5 * a) - 161;
     let tdee = Math.round(bmr * act);
 
-    let p = Math.round((tdee * 0.3) / 4);
-    let f = Math.round((tdee * 0.3) / 9);
-    let c = Math.round((tdee * 0.4) / 4);
-
     document.getElementById("calcResultCard").classList.remove("hidden");
     document.getElementById("resDailyCal").textContent = tdee + " ккал";
-    document.getElementById("resDailyProt").textContent = p + " г";
-    document.getElementById("resDailyFat").textContent = f + " г";
-    document.getElementById("resDailyCarb").textContent = c + " г";
+    document.getElementById("resDailyProt").textContent = Math.round((tdee * 0.3) / 4) + " г";
+    document.getElementById("resDailyFat").textContent = Math.round((tdee * 0.3) / 9) + " г";
+    document.getElementById("resDailyCarb").textContent = Math.round((tdee * 0.4) / 4) + " г";
   }
 
   function toggleFavorite() {
     let favs = JSON.parse(localStorage.getItem("ld_app_favs") || "[]");
     const idx = favs.findIndex(item => item.full === lastProductText);
     const btn = document.getElementById("favBtn");
-
     if (idx > -1) {
-      favs.splice(idx, 1);
-      btn.textContent = "🤍";
+      favs.splice(idx, 1); btn.textContent = "🤍";
     } else {
-      favs.unshift({ title: lastProductText.slice(0, 32) + "...", full: lastProductText, score: lastScore });
+      favs.unshift({ title: lastProductText.slice(0, 30) + "...", full: lastProductText, score: lastScore });
       btn.textContent = "❤️";
     }
     localStorage.setItem("ld_app_favs", JSON.stringify(favs));
@@ -1496,22 +1746,20 @@
 
   function updateFavoriteButtonState(text) {
     let favs = JSON.parse(localStorage.getItem("ld_app_favs") || "[]");
-    const exists = favs.some(item => item.full === text);
-    document.getElementById("favBtn").textContent = exists ? "❤️" : "🤍";
+    document.getElementById("favBtn").textContent = favs.some(item => item.full === text) ? "❤️" : "🤍";
   }
 
   function renderFavorites() {
     let favs = JSON.parse(localStorage.getItem("ld_app_favs") || "[]");
     const container = document.getElementById("favoritesContainer");
     document.getElementById("statFavs").textContent = favs.length;
-
     if (!favs.length) {
-      container.innerHTML = `<div class="card" style="text-align:center; color:var(--muted);">В избранном пока ничего нет</div>`;
+      container.innerHTML = `<div class="card" style="text-align:center; color:var(--muted);">Пусто</div>`;
       return;
     }
     container.innerHTML = favs.map(item => `
-      <div class="card" style="padding:14px; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="loadFromFav('${item.full.replace(/'/g, "\\'")}')">
-        <div style="font-size:0.88rem; font-weight:600;">${item.title}</div>
+      <div class="card" style="padding:12px; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="loadFromFav('${item.full.replace(/'/g, "\\'")}')">
+        <div style="font-size:0.85rem; font-weight:600;">${item.title}</div>
         <div style="font-weight:800; color:var(--primary);">${item.score}/100</div>
       </div>
     `).join("");
@@ -1526,47 +1774,27 @@
   function speakResult() {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(`${lastVerdictText}. Оценка ${lastScore} из 100.`);
-    utterance.lang = currentLang === 'kz' ? 'kk-KZ' : currentLang === 'en' ? 'en-US' : 'ru-RU';
-    window.speechSynthesis.speak(utterance);
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(`${lastVerdictText}. Оценка ${lastScore} из 100.`));
   }
 
   function sendChat() {
     const input = document.getElementById("chatInput");
     const q = input.value.trim();
     if (!q) return;
-
     const box = document.getElementById("chatMessages");
-    box.innerHTML += `<div class="msg user">${escapeChatText(q)}</div>`;
+    box.innerHTML += `<div class="msg user">${q}</div>`;
     input.value = "";
     box.scrollTop = box.scrollHeight;
-
     setTimeout(() => {
-      box.innerHTML += `<div class="msg bot">${getBotReply(q)}</div>`;
+      box.innerHTML += `<div class="msg bot">Оценка последнего продукта: ${lastScore}/100. Спрашивайте про витамины или КБЖУ!</div>`;
       box.scrollTop = box.scrollHeight;
     }, 400);
-  }
-
-  function escapeChatText(str) {
-    return str.replace(/[&<>'"]/g, tag => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-    }[tag]));
-  }
-
-  function getBotReply(q) {
-    const lq = q.toLowerCase();
-    if (/(краб|crab)/.test(lq) && /(сметан|зелен)/.test(lq)) {
-      return "🦀 <b>Краб чипсы:</b> На ароматизаторах и Е621.<br><br>🌿 <b>Сметана и зелень:</b> Есть сыворотка и луковый порошок.";
-    }
-    if (/(е621|e621|глутамат)/.test(lq)) return "Е621 (глутамат натрия) — усилитель вкуса.";
-    if (/(сахар|похуд)/.test(lq)) return `Оценка продукта: ${lastScore}/100. Избегайте скрытых сиропов!`;
-    return `Оценка проверенного продукта: <b>${lastScore}/100</b>. Задайте вопрос о составе или КБЖУ!`;
   }
 
   function saveHistory(text, score) {
     let list = JSON.parse(localStorage.getItem("ld_app_hist") || "[]");
     list = list.filter(item => item.full !== text);
-    list.unshift({ title: text.slice(0, 32) + "...", full: text, score: score });
+    list.unshift({ title: text.slice(0, 30) + "...", full: text, score: score });
     if (list.length > 10) list.pop();
     localStorage.setItem("ld_app_hist", JSON.stringify(list));
     document.getElementById("statScans").textContent = list.length;
@@ -1576,7 +1804,6 @@
     let list = JSON.parse(localStorage.getItem("ld_app_hist") || "[]");
     const container = document.getElementById("historyContainer");
     document.getElementById("statScans").textContent = list.length;
-
     if (!list.length) {
       container.innerHTML = `<div class="card" style="text-align:center; color:var(--muted);">История пуста</div>`;
       return;
@@ -1584,10 +1811,10 @@
     container.innerHTML = list.map((item, index) => `
       <div class="history-item-wrap">
         <div class="card history-card" onclick="loadFromHist('${item.full.replace(/'/g, "\\'")}')">
-          <div style="font-size:0.88rem; font-weight:600;">${item.title}</div>
+          <div style="font-size:0.85rem; font-weight:600;">${item.title}</div>
           <div style="font-weight:800; color:var(--primary);">${item.score}/100</div>
         </div>
-        <button class="delete-btn" onclick="deleteHistoryItem(${index})" title="Удалить">✕</button>
+        <button class="delete-btn" onclick="deleteHistoryItem(${index})">✕</button>
       </div>
     `).join("");
   }
@@ -1610,6 +1837,8 @@
     runAnalysis();
   }
 
+  // Инициализация
+  updateStreak();
   const initHist = JSON.parse(localStorage.getItem("ld_app_hist") || "[]");
   const initFavs = JSON.parse(localStorage.getItem("ld_app_favs") || "[]");
   document.getElementById("statScans").textContent = initHist.length;
